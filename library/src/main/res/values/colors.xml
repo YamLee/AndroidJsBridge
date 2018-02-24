@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary_dark">@color/palette_orange</color>
+    <color name="primary">@color/palette_orange</color>
+    <color name="accent">#424242</color>
+    <color name="white">#ffffff</color>
+
+    <!-- 调色板 -->
+    <color name="palette_red">#FD5359</color>
+    <color name="palette_red_dark">#E65359</color>
+    <color name="palette_orange">#FF8100</color>
+    <color name="palette_orange_dark">#FE950B</color>
+    <color name="palette_orange_shallow">#FFECD5</color>
+    <color name="palette_orange2">#fea411</color>
+    <color name="palette_white">#FFFFFF</color>
+    <color name="palette_white_transparent">#ddFFFFFF</color>
+    <color name="palette_white_smoke">#f8f8f8</color>
+    <color name="palette_white_light">#ebebeb</color>
+    <color name="palette_aluminium">#8a8c92</color>
+    <color name="palette_gray">#A7A9AE</color>
+    <color name="palette_gray_mid">#C2C2C2</color>
+    <color name="palette_gray_light">#E5E5E5</color>
+    <color name="palette_gray_white">#EFEFEF</color>
+    <color name="palette_black">#000000</color>
+    <color name="palette_black_mid">#4E5057</color>
+    <color name="palette_black_light">#606470</color>
+    <color name="palette_brown">#680713</color>
+    <color name="palette_black_translucent">#7f000000</color>
+    <color name="palette_gray_40">#7fA7A9AE</color>
+    <color name="palette_gray_athens">#dedede</color>
+    <color name="palette_transparent">#00000000</color>
+    <color name="palette_orange_95">#f0FE9B20</color>
+    <color name="palette_orange_30">#4dFE9B20</color>
+    <color name="palette_white_90">#E6EBEBEB</color>
+    <color name="near_list_line_gray">#efefef</color>
+    <color name="palette_f7f7f7">#f7f7f7</color>
+    <color name="palette_blue">#38c4dd</color>
+    <color name="palette_wx_green">#6BC10E</color>
+    <color name="palette_blue_alipay">#00AAEE</color>
+    <color name="palette_yellow">#faff81</color>
+    <color name="palette_dark_purple">#372B4D</color>
+    <color name="palette_royal_purple">#8B62E9</color>
+    <color name="palette_light_purple">#ECE4FF</color>
+    <color name="palette_yellow2">#fed900</color>
+    <color name="palette_notify_coupon_status_waiting">#70A3E1</color>
+    <color name="palette_notify_coupon_status_stop">#FF7049</color>
+    <color name="palette_F7F7FF">#F7F7FF</color>
+    <color name="palette_F7F3FF">#F7F3FF</color>
+    <color name="palette_4A4A4A">#4A4A4A</color>
+
+    <!--红包模块 -->
+    <color name="palette_light_gold">#ffd98a</color>
+    <color name="palette_gold">#f4aa12</color>
+    <color name="palette_dark_gold">#de9601</color>
+    <color name="palette_hb_red">#f04f46</color>
+    <color name="palette_hb_red_light">#2fFD5359</color>
+    <color name="palette_hb_bg">#faf8f6</color>
+    <color name="palette_dark_red">#b93e37</color>
+    <color name="palette_brown_medium">#692019</color>
+    <color name="palette_light_yellow">#fff3d9</color>
+
+    <color name="color_success">#3CCD88</color>
+    <color name="color_error">#f44336</color>
+
+    <color name="loading_background_color">#99292421</color>
+    <color name="loading_progress_circle_color">#C0C0C0</color>
+
+    <color name="common_background_color">#F7F7F7</color>
+    <color name="home_background_color">#eff0fa</color>
+    <color name="common_divide_line_color">#E5E5E5</color>
+    <color name="common_banner_dot_selected_color">#ff8100</color>
+    <color name="common_banner_dot_unselected_color">#c1c1c1</color>
+    <!--90%黑色透明度 通用蒙层背景-->
+    <color name="palette_black_90">#e6000000</color>
+    <color name="palette_black_85">#d9000000</color>
+    <color name="palette_black_70">#d6000000</color>
+    <color name="palette_black_50">#7f000000</color>
+    <color name="palette_black_40">#66000000</color>
+    <color name="palette_black_15">#20000000</color>
+    <color name="palette_black_30">#4D000000</color>
+    <color name="palette_black_20">#14000000</color>
+    <!--首页数据卡片背景阴影色-->
+    <color name="palette_black_10_home_card">#0a000000</color>
+
+    <color name="palette_purple_royal">#8b62e9</color>
+    <color name="palette_purple_royal_30">#4D8b62e9</color>
+
+    <color name="palette_shallow_purple">#F4F0FD</color>
+    <color name="palette_shallow_green">#7ED321</color>
+
+    <color name="palette_preview_pass">#1EC622</color>
+    <color name="default_shadow_color">#88757575</color>
+
+</resources>

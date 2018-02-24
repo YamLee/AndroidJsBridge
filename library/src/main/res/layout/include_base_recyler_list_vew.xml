@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/srl_base_list_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:showIn="@layout/fragment_base_list">
+
+    <FrameLayout
+        android:id="@+id/fl_content_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_base_list_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/common_background_color"
+            android:visibility="visible" />
+
+        <include layout="@layout/include_common_empty_page" />
+
+        <include layout="@layout/include_page_error" />
+    </FrameLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+    >
+    <ImageView
+        android:layout_marginTop="16.33dp"
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_update_log"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/img"
+        android:id="@+id/tv_msg"
+        android:textColor="@color/palette_black_light"
+        android:textSize="@dimen/typography_f13"
+        android:lineSpacingExtra="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="消费即为会员，积累顾客数据深度联系消费者，为消费者制定多种专属营销活动活动信息精准触达，吸引顾客到店享受会员特权，提升顾客忠诚度"
+        />
+
+
+</RelativeLayout>

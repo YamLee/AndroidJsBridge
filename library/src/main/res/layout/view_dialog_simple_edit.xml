@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white_circle"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_dialog_simple_edit_title"
+        style="@style/Text.black.f16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:layout_marginRight="@dimen/common_margin"
+        android:layout_marginTop="20dp"
+        tools:text="新建分类名称" />
+
+    <EditText
+        android:id="@+id/et_dialog_simple_edit_content"
+        style="@style/Text.black.f17"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:layout_marginRight="@dimen/common_margin"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_gray_edge"
+        android:maxLength="15"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:textColorHint="@color/palette_gray"
+        tools:hint="请输入分类名称"
+        tools:text="" />
+
+    <View
+        style="@style/DivideLine.Horizontal"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/tv_dialog_simple_edit_confirm"
+        style="@style/Text.orange.f17"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/i_know_it" />
+</LinearLayout>
+
+

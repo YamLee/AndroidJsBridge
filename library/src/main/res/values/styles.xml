@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Base application theme. -->
+    <style name="NearTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--<item name="colorPrimary">@color/palette_white</item>
+        <item name="colorPrimaryDark">@color/palette_gray_white</item>
+        <item name="colorAccent">@color/palette_red</item>
+        <item name="android:windowBackground">?colorPrimary</item>
+        <item name="android:windowContentOverlay">@null</item>-->
+        <item name="android:background">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <!-- animation -->
+        <item name="android:windowAnimationStyle">@style/Animation_Activity</item>
+    </style>
+
+    <!--通用背景色的主题-->
+    <style name="NearTheme.CommonBackgroundColor" parent="NearTheme">
+        <item name="android:background">@color/common_background_color</item>
+    </style>
+
+    <!--白色背景色的主题-->
+    <style name="NearTheme.White" parent="NearTheme">
+        <item name="android:background">@color/palette_white</item>
+    </style>
+
+    <!--红包红背景色的主题-->
+    <style name="NearTheme.HB_Red" parent="NearTheme">
+        <item name="android:background">@color/palette_hb_bg</item>
+    </style>
+
+    <!--会员集点背景色的主题-->
+    <style name="NearTheme.Dark_Purple" parent="NearTheme">
+        <item name="android:background">@color/palette_dark_purple</item>
+    </style>
+
+
+    <!--90%透明黑色背景色的主题-->
+    <style name="NearTheme.Black_90" parent="NearTheme">
+        <item name="android:background">@color/palette_black_90</item>
+    </style>
+
+    <!--70%透明黑色背景色的主题-->
+    <style name="NearTheme.Black_70" parent="NearTheme">
+        <item name="android:background">@color/palette_black_70</item>
+    </style>
+
+    <!--50%透明黑色背景色的主题-->
+    <style name="NearTheme.Black_50" parent="NearTheme">
+        <item name="android:background">@color/palette_black_50</item>
+    </style>
+
+    <!--透明背景色主题-->
+    <style name="NearTheme.Translucent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        　　
+        <item name="android:windowIsTranslucent">true</item>
+        　　
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
+    <style name="NearThemeLR" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!-- animation -->
+        <item name="android:windowAnimationStyle">@style/Animation_Activity_lr</item>
+    </style>
+
+    <style name="Animation_Activity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_animation_open_enter
+        </item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_animation_close_exit
+        </item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_animation_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_animation_close_enter
+        </item>
+    </style>
+
+    <style name="Animation_Activity_lr" parent="@style/Animation_Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_animation_right_left
+        </item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_animation_close_exit
+        </item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_animation_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_animation_close_enter
+        </item>
+    </style>
+
+    <style name="publish_dialog" parent="@style/NearTheme">
+        <item name="android:windowFrame">@null</item>
+        <!--Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--背景是否半透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--背景半透明灰度-->
+        <item name="android:backgroundDimAmount">0.8</item>
+        <item name="android:windowBackground">@color/palette_transparent</item>
+    </style>
+
+    <style name="NotificationText" parent="android:TextAppearance.StatusBar.EventContent" />
+
+    <style name="NotificationTitle" parent="android:TextAppearance.StatusBar.EventContent.Title" />
+
+    <style name="grayLightLine">
+        <item name="android:background">@color/palette_gray_light</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="date_lv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:divider">@null</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+</resources>

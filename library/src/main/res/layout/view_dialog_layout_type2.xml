@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?><!--有确定和取消两个按钮的对话框布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/top_semi_circle_shape_orange">
+
+        <TextView
+            android:id="@+id/tv_alert_title"
+            style="@style/Text.white.f2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/text_tip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_semi_circle_shape_wight"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_alert_content"
+            style="@style/Text.black_light.f2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/palette_white"
+            android:gravity="center|left"
+            android:padding="10dp"
+            tools:text="确定退出！" />
+
+        <RelativeLayout
+            android:id="@+id/rl_down_load_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_progress"
+                style="@style/Text.black.f3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="0%" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/tv_progress"
+                android:indeterminate="false"
+                android:max="100" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_line"
+            style="@style/Line_No_Space"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/view_divider"
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/palette_gray_light" />
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                style="@style/Text.oragnge.f3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/view_divider"
+                android:background="@color/palette_transparent"
+                android:gravity="center"
+                android:text="@string/text_confirm" />
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                style="@style/Text.gray_mid.f3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/view_divider"
+                android:background="@color/palette_transparent"
+                android:gravity="center"
+                android:text="@string/text_cancel" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

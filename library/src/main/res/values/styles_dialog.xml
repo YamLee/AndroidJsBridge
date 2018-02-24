@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <style name="Dialog" parent="@style/Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="Theme.Near.CustomProgressDialog" parent="@style/Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="customer_progress_dialog" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateDuration">2000</item>
+        <!--<item name="android:fullDark">@drawable/tip2_bg</item>-->
+        <!--<item name="android:topDark">@drawable/tip2_bg</item>-->
+        <!--<item name="android:centerDark">@drawable/tip2_bg</item>-->
+        <!--<item name="android:bottomDark">@drawable/tip2_bg</item>-->
+        <!--<item name="android:fullBright">@drawable/tip2_bg</item>-->
+        <!--<item name="android:topBright">@drawable/tip2_bg</item>-->
+        <!--<item name="android:centerBright">@drawable/tip2_bg</item>-->
+        <!--<item name="android:bottomBright">@drawable/tip2_bg</item>-->
+        <!--<item name="android:bottomMedium">@drawable/tip2_bg</item>-->
+        <!--<item name="android:centerMedium">@drawable/tip2_bg</item>-->
+    </style>
+</resources>

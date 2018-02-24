@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/v_title"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/view_title_bar_height">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/btn_back_orange" />
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/iv_back"
+        android:paddingLeft="10dp"
+        android:paddingRight="15dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/icn_close"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/Text.black.f17"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:maxWidth="200dp"
+        android:singleLine="true"
+        tools:text="标题标题标题标题标题标题标题标题" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@+id/iv_menu"
+        android:layout_toRightOf="@id/tv_title">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_titles_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            tools:src="@drawable/cicle_rec_background"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/palette_orange"
+            android:textSize="@dimen/typography_f15"
+            android:visibility="gone"
+            tools:text="测试按钮"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="8dp"
+        android:paddingRight="15dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/btn_more_orange"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <View
+        style="@style/DivideLine.Horizontal"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

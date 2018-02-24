@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--只有确定按钮的对话框布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/top_semi_circle_shape_orange">
+        <TextView
+            android:id="@+id/tv_alert_title"
+            style="@style/Text.white.f2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="提示" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bottom_semi_circle_shape_wight"
+        >
+        <TextView
+            android:id="@+id/tv_alert_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="确定退出！"
+            style="@style/Text.black.f3"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:background="@color/palette_white"
+            />
+        <View
+            android:id="@+id/view_line"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            style="@style/Line_No_Space" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:background="@color/palette_transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="确定"
+                style="@style/Text.orange.f3"
+                android:gravity="center_horizontal"
+                />
+        </LinearLayout>
+        </LinearLayout>
+
+
+</LinearLayout>

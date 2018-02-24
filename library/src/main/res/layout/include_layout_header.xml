@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_navigation_header"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/view_title_bar_height"
+    style="@style/NearTheme.White"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/palette_gray_light"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_navigation_left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@null"
+        android:paddingLeft="@dimen/common_margin"
+        android:paddingRight="@dimen/common_margin">
+
+        <TextView
+            android:id="@+id/tv_navigation_header_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:textColor="@color/palette_orange"
+            android:textSize="@dimen/typography_f15" />
+
+        <ImageView
+            android:id="@+id/iv_navigation_header_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="120dp"
+        android:minHeight="120dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_naviation_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="200dp"
+            android:singleLine="true"
+            android:textColor="@color/palette_black_light"
+            android:textSize="@dimen/typography_f17" />
+
+        <ImageView
+            android:id="@+id/iv_title_image"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="1dp"
+            android:src="@drawable/ic_right_arrow"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_navigation_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:paddingLeft="@dimen/common_margin"
+        android:paddingRight="@dimen/common_margin">
+
+        <TextView
+            android:id="@+id/tv_navigation_header_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_back_selector"
+            android:singleLine="true"
+            android:textColor="@color/palette_orange"
+            android:textSize="@dimen/typography_f15"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_navigation_header_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_base_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_divide_line_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/common_divide_line_color" />
+
+
+</RelativeLayout>

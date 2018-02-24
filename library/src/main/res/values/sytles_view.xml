@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NavigationHeaderSubtitleSytle">
+        <item name="android:layout_height">@dimen/navigation_header_subtitle_height</item>
+        <item name="android:layout_width">@dimen/navigation_header_subtitle_width</item>
+        <item name="android:textSize">@dimen/typography_f17</item>
+        <item name="android:textColor">@color/palette_orange</item>
+    </style>
+
+    <style name="DivideLine">
+        <item name="android:background">@color/palette_gray_light</item>
+    </style>
+
+    <style name="DivideLine.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/common_divide_line_color</item>
+    </style>
+
+    <style name="DivideLine.Vertical">
+        <item name="android:background">@color/common_divide_line_color</item>
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Line_No_Space">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/palette_gray_white</item>
+    </style>
+
+    <style name="line_gray_light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/palette_gray_light</item>
+    </style>
+
+    <style name="Bottom_Btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+    </style>
+
+    <style name="Bottom_Btn.Orange" parent="Bottom_Btn">
+        <item name="android:background">@color/palette_orange</item>
+        <item name="android:textColor">@color/palette_white</item>
+        <item name="android:textSize">@dimen/typography_f17</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Bottom_Btn.Transparent" parent="Bottom_Btn">
+        <item name="android:background">@color/palette_transparent</item>
+        <item name="android:textColor">@color/palette_white</item>
+        <item name="android:textSize">@dimen/typography_f17</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>
