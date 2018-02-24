@@ -1,82 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnJumpWeb"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/v_title"
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
-
-            <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_back" />
-
-            <EditText
-                android:id="@+id/et_url"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/iv_back"
-                android:layout_toLeftOf="@+id/iv_enter"
-                android:layout_toRightOf="@+id/iv_back"
-                android:layout_toStartOf="@+id/iv_enter" />
-
-            <ImageView
-                android:id="@+id/iv_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:paddingLeft="8dp"
-                android:paddingRight="15dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_more"
-                android:visibility="gone"
-                tools:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/iv_enter"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@id/iv_menu"
-                android:layout_toStartOf="@id/iv_menu"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_enter"
-                android:visibility="gone"
-                tools:visibility="visible" />
-
-            <View
-                style="@style/DivideLine.Horizontal"
-                android:layout_alignParentBottom="true" />
-        </RelativeLayout>
-
-
-        <ProgressBar
-            android:id="@+id/pb_web_view"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:progressDrawable="@drawable/progress_webview_load"
-            android:visibility="gone"
-            tools:progress="50" />
-
-        <me.yamlee.jsbridge.ui.NearWebView
-            android:id="@+id/webView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-</FrameLayout>
+        android:layout_height="45dp"
+        android:text="跳转WebActivity" />
+</LinearLayout>

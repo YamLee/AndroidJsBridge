@@ -1,36 +1,30 @@
 package me.yamlee.demo
 
+import android.Manifest
+import android.content.Intent
 import android.os.Bundle
-import android.webkit.WebChromeClient
+import android.support.v7.app.AppCompatActivity
+import com.tbruyelle.rxpermissions.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
-import me.yamlee.jsbridge.BridgeWebChromeClient
-import me.yamlee.jsbridge.QFHybridWebViewClient
-import me.yamlee.jsbridge.WVJBWebViewClient
-import me.yamlee.jsbridge.ui.BridgeWebActivity
+import me.yamlee.jsbridge.utils.ToastUtil
 
-class MainActivity : BridgeWebActivity() {
+
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
-
-    /**
-     * 设置默认的client
-     */
-    private fun setWebView() {
-        val wvBridgeHandler = object : WVJBWebViewClient.WVJBHandler {
-            override fun request(data: Any?, callback: WVJBWebViewClient.WVJBResponseCallback?) {
-
-            }
-
-        }
-        val chromeClient: WebChromeClient = BridgeWebChromeClient(applicationContext)
-        webView.webChromeClient = chromeClient
-
-        val webViewClient = QFHybridWebViewClient(webView, wvBridgeHandler, this)
-        webViewClient.enableLogging()
-        webView.webViewClient = webViewClient
-
+        RxPermissions(this)
+                .request(Manifest.permission.READ_PHONE_STATE)
+                .subscribe({ granted ->
+                    if (granted) { // Always true pre-M
+                        btnJumpWeb.setOnClickListener {
+                            val intent = Intent(this, WebActivity::class.java)
+                            startActivity(intent)
+                        }
+                    } else {
+                        ToastUtil.showShort(applicationContext, "请先赋予权限")
+                    }
+                })
     }
 }

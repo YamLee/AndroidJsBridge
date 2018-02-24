@@ -20,7 +20,7 @@
             android:visibility="gone"
             tools:progress="50" />
 
-        <com.qfpay.essential.widget.NearWebView
+        <me.yamlee.jsbridge.widget.view.NearWebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

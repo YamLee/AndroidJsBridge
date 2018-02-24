@@ -44,7 +44,7 @@
         android:layout_toLeftOf="@+id/iv_menu"
         android:layout_toRightOf="@id/tv_title">
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <ImageView
             android:id="@+id/sdv_titles_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" data-rem="375">
+<head>
+    <meta charset="UTF-8">
+    <title>JSBridge测试</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="no"/>
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css"
+          href="//cdnjs.cloudflare.com/ajax/libs/weui/1.1.0/style/weui.min.css"/>
+    <style>
+    .container {
+      padding: 10px;
+    }
+    button{
+        width:300px;
+        height:40px;
+    }
+    .margin{
+        margin:5px
+    }
+    </style>
+
+    <script type="text/javascript" charset="utf-8">
+    function test_alert(content){
+      QFPAY.call('alert',{
+        title: 'title',
+        msg: content
+      }, function(ret){
+        console.log(JSON.stringify(ret))
+      })
+    }
+    function test_toast(){
+      QFPAY.call('toast', {
+          msg: '测试 提示'
+      }, function(cb){
+          console.log(cb.ret)
+      })
+    }
+    function test_close(){
+      QFPAY.call('close', {}, function(cb){
+          console.log(cb.ret)
+      })
+    }
+    function test_openuri(){
+      QFPAY.call('openUri', {
+        uri: 'hjsh://ppay/guide'
+      },function(cb){
+        console.log(cb.ret)
+      })
+    }
+    function test_get_device_info(){
+      QFPAY.call('getDeviceInfo', {}, function(cb){
+        console.log(cb.ret)
+        console.log('系统' + cb.os +'\n型号' + cb.phonemodel + '\n网络' + cb.network + '\nappname' + cb.appname + '\nappver' + cb.appver + '\nudid' + cb.udid)
+      })
+    }
+    function test_get_location(){
+      QFPAY.call('getLocation', {
+        type: 'WGS84'
+      },function(cb){
+        alert('经纬度'+cb.longitude+ ' '+ cb.latitude)
+      })
+    }
+    function test_set_nav_title(){
+      QFPAY.call('setNavTitle',{
+        title: '我是红底绿字',
+        color: '#00FF00',
+        bgcolor: '#FF0000'
+      }, function(cb){
+
+      })
+    }
+    function test_set_nav_back(){
+      QFPAY.call('setNavBack', {
+        type: 'uri',
+        url: 'http://www.baidu.com'
+      }, function(cb){
+        console.log(cb.ret)
+      })
+    }
+    function test_set_nav_menus(){
+      QFPAY.call('setNavMenu', {
+        menus: [
+        {
+          type: 'uri',
+          uri: 'http://baidu.com',
+          title: '打开百度'
+        },
+        {
+          type: 'uri',
+          uri: 'http://www.qfpay.com',
+          title: '打开官网'
+        }
+        ],
+        buttons:[
+           {
+              type: 'uri',
+              uri: 'http://baidu.com',
+              title: '打开百度'
+           }
+        ]
+      }, function(cb){
+        console.log(cb.ret)
+      })
+    }
+    function test_clear_nav_menus(){
+      QFPAY.call('setNavMenu', {
+        menus: [
+        ],
+        buttons:[
+        ]
+      }, function(cb){
+        console.log(cb.ret)
+      })
+    }
+    function test_scan_qrcode(){
+      QFPAY.call('scanQrcode', {}, function(cb){
+        console.log(cb.ret)
+        alert(cb.qrcode)
+      })
+    }
+
+    </script>
+</head>
+<body>
+<script id="__bs_script__">
+    //<![CDATA[document.write("<script async src='/browser-sync/browser-sync-client.2.13.0.js'><\/script>".replace("HOST", location.hostname));//]]>
+</script>
+
+<div class="container">
+    <button class=".margin" type="button" onclick="test_alert('测试弹出消息')">弹框</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_toast()">提示</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_close()">关闭窗口</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_openuri()">跳转储值引导页</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_get_device_info()">获取设备信息</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_get_location()">获取经纬度</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_set_nav_title()">设置标题</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_set_nav_back()">设置返回按钮</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_set_nav_menus()">设置菜单</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_clear_nav_menus()">清除菜单</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_scan_qrcode()">扫描二维码</button>
+    <br>
+</div>
+<script type="text/javascript" charset="utf-8">
+    (function () { var script = document.createElement('script');
+    script.src="//liriliri.github.io/eruda/eruda.min.js";
+    document.body.appendChild(script); script.onload = function () {
+        eruda.init();
+         QFPAY.init();
+    } })()
+</script>
+</body>
+</html>
