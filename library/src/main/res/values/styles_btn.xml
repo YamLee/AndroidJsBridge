@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 常规按钮样式-->
+    <style name="Btn" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:textSize">@dimen/typography_f17</item>
+        <item name="android:textColor">@color/palette_white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/shape_orange_corner_solid</item>
+    </style>
+
+
+</resources>

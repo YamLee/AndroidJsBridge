@@ -32,14 +32,8 @@
 
     <TextView
         android:id="@+id/dialog_tv_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
+        style="@style/Btn"
         android:layout_below="@+id/dialog_tv_content"
         android:layout_marginTop="25dp"
-        android:layout_weight="1"
-        android:background="@drawable/shape_orange_corner_solid"
-        android:gravity="center"
-        android:textColor="@color/palette_white"
-        android:textSize="@dimen/typography_f17"
         tools:text="确定" />
 </RelativeLayout>
