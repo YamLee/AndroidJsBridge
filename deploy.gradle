@@ -1,0 +1,109 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+def artifact = new Properties()
+artifact.load(new FileInputStream("deploy.settings"))
+
+version=artifact.version
+group=artifact.groupId
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'aar'
+            groupId artifact.groupId
+            artifactId artifact.id
+
+            version artifact.version
+            name artifact.name // pom.project.name must be same as bintray.pkg.name
+            url artifact.siteUrl
+
+            licenses {
+                license { // HARDCODED
+                    name artifact.licenseName
+                    url artifact.licenseUrl
+                }
+            }
+            developers {
+                developer {
+                    id artifact.developerId
+                    name artifact.developerName
+                    email artifact.developerEmail
+                }
+            }
+            scm {
+                connection artifact.gitUrl
+                developerConnection artifact.gitUrl
+                url artifact.siteUrl
+            }
+        }
+    }
+}
+
+//Properties properties = new Properties()
+//File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
+//properties.load(propFile.newDataInputStream())
+
+bintray {
+    user = project.property('bintray_user')
+    key = project.property('bintray_key')
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = artifact.id
+        desc = artifact.libraryDescription
+        websiteUrl = artifact.siteUrl
+        vcsUrl = artifact.gitUrl
+        licenses = artifact.licenses.split(',')
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = artifact.libraryDescription
+            name = artifact.version
+        }
+    }
+}
+
+
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+    // options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    excludes = ['**/*.kt']
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+
+
+
+// Step 1: ./gradlew install
+// Step 2: ./gradlew bintrayUpload
