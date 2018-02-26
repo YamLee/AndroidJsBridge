@@ -21,7 +21,8 @@ class WebActivity : BridgeWebActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setWebView()
-        loadUrl("http://www.baidu.com")
+        loadUrl("file:///android_asset/jsbridge_test.html")
+//        loadUrl("http://www.baidu.com")
     }
 
     /**

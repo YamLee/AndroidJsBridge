@@ -9,7 +9,7 @@
     android:paddingLeft="15dp"
     android:paddingRight="15dp">
 
-    <in.haojin.nearbymerchant.widget.BoldTextView
+    <me.yamlee.jsbridge.widget.view.BoldTextView
         android:id="@+id/dialog_tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
