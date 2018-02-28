@@ -4,7 +4,7 @@ package me.yamlee.jsbridge.jscall;
 import me.yamlee.jsbridge.BaseJsCallProcessor;
 import me.yamlee.jsbridge.JsCallData;
 import me.yamlee.jsbridge.NativeComponentProvider;
-import me.yamlee.jsbridge.ui.NearWebLogicView;
+import me.yamlee.jsbridge.ui.WebActionView;
 
 /**
  * Js调用原生显示弹框处理
@@ -13,7 +13,7 @@ import me.yamlee.jsbridge.ui.NearWebLogicView;
  */
 public class AlertProcessor extends BaseJsCallProcessor {
     public static final String FUNC_NAME = "alert";
-    private NearWebLogicView nearWebLogicView;
+    private WebActionView nearWebLogicView;
 
     public AlertProcessor(NativeComponentProvider componentProvider) {
         super(componentProvider);

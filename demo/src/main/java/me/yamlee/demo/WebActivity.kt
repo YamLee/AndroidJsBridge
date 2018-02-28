@@ -1,12 +1,10 @@
 package me.yamlee.demo
 
-import android.Manifest
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import com.tbruyelle.rxpermissions.RxPermissions
 import me.yamlee.jsbridge.BridgeWebChromeClient
 import me.yamlee.jsbridge.NativeComponentProvider
 import me.yamlee.jsbridge.QFHybridWebViewClient
@@ -15,7 +13,8 @@ import me.yamlee.jsbridge.model.ListIconTextModel
 import me.yamlee.jsbridge.ui.BridgeWebActivity
 
 /**
- * Created by yamlee on 24/02/2018.
+ * WebView容器界面
+ * @author YamLee
  */
 class WebActivity : BridgeWebActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

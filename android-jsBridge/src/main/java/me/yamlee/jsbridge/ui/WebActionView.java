@@ -12,7 +12,7 @@ import me.yamlee.jsbridge.model.ListIconTextModel;
  *
  * @author yamlee
  */
-public interface NearWebLogicView extends NearLogicView {
+public interface WebActionView extends ActionView {
     /**
      * 显示通用弹框
      *

@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import me.yamlee.jsbridge.BaseJsCallProcessor;
 import me.yamlee.jsbridge.JsCallData;
 import me.yamlee.jsbridge.NativeComponentProvider;
-import me.yamlee.jsbridge.ui.NearWebLogicView;
+import me.yamlee.jsbridge.ui.WebActionView;
 
 /**
  * JS调用Toast提示
@@ -16,7 +16,7 @@ import me.yamlee.jsbridge.ui.NearWebLogicView;
 public class ToastProcessor extends BaseJsCallProcessor {
 
     public static final String FUNC_NAME = "toast";
-    private NearWebLogicView view;
+    private WebActionView view;
 
     public ToastProcessor(NativeComponentProvider componentProvider) {
         super(componentProvider);

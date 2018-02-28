@@ -14,17 +14,20 @@ import me.yamlee.jsbridge.jscall.ToastProcessor;
 import timber.log.Timber;
 
 /**
- * @author by fengruicong on 16/12/2.
+ * 包含JsBridge功能的WebViewClient
+ *
+ * @author yamlee
  */
 public class QFHybridWebViewClient extends WVJBWebViewClient {
 
+    public static final String BRIDGE_HANDLER_NAME = "JsBridgeCall";
     private Map<String, JsCallProcessor> jsCallProcessors;
 
     public QFHybridWebViewClient(final WebView webView, WVJBHandler wvjbHandler,
                                  final NativeComponentProvider componentProvider) {
         super(webView, wvjbHandler);
         registerCallProcessors(componentProvider);
-        registerHandler("QFHybrid", new WVJBHandler() {
+        registerHandler(BRIDGE_HANDLER_NAME, new WVJBHandler() {
             @Override
             public void request(Object data, WVJBResponseCallback callback) {
                 JSONObject jsonObject = (JSONObject) data;

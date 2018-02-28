@@ -1,11 +1,11 @@
 package me.yamlee.jsbridge.ui;
 
 /**
- * Essential模块Fragment基础逻辑View回调接口
+ * Activity，Fragment实现的基础逻辑View接口
  *
  * @author yamlee
  */
-public interface NearLogicView {
+public interface ActionView {
     /**
      * 显示错误提示，为重写情况下表现为SnackBar提示
      *
@@ -44,6 +44,16 @@ public interface NearLogicView {
     void hideSoftKeyBoard();
 
     /**
+     * 显示加载进度条
+     */
+    void showProgress();
+
+    /**
+     * 隐藏加载进度条
+     */
+    void hideProgress();
+
+    /**
      * 设置是否显示默认的错误界面
      */
     void setErrorPageVisible(boolean isVisible);
@@ -62,8 +72,4 @@ public interface NearLogicView {
      * 设置是否显示空页面,并设置特定的空文案
      */
     void setEmptyPageVisible(boolean isVisible, String emptyText);
-
-    void showProgress();
-
-    void hideProgress();
 }

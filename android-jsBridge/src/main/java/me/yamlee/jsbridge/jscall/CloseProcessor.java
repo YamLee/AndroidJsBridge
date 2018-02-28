@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import me.yamlee.jsbridge.BaseJsCallProcessor;
 import me.yamlee.jsbridge.JsCallData;
 import me.yamlee.jsbridge.NativeComponentProvider;
-import me.yamlee.jsbridge.ui.NearWebLogicView;
+import me.yamlee.jsbridge.ui.WebActionView;
 
 /**
  * Js调用界面关闭
@@ -17,7 +17,7 @@ import me.yamlee.jsbridge.ui.NearWebLogicView;
 public class CloseProcessor extends BaseJsCallProcessor {
 
     public static final String FUNC_NAME = "close";
-    private NearWebLogicView.WebLogicListener nearInteraction;
+    private WebActionView.WebLogicListener nearInteraction;
 
     public CloseProcessor(NativeComponentProvider componentProvider) {
         super(componentProvider);

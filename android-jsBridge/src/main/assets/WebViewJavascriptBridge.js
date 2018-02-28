@@ -7,6 +7,8 @@
 	
 	var CUSTOM_PROTOCOL_SCHEME = 'wvjbscheme'
 	var QUEUE_HAS_MESSAGE = '__WVJB_QUEUE_MESSAGE__'
+	var CALL_HANDLE_NAME = 'JsBridgeCall'
+	var CALL_NATIVE_HANDLE_NAME = 'JsCallNative'
 	
 	var responseCallbacks = {}
 	var uniqueId = 1
@@ -42,7 +44,7 @@
 	}
 
 	function call(func, params, responseCallback) {
-	    callHandlerName = "QFHybrid";
+	    callHandlerName = CALL_HANDLE_NAME;
 		_doSend({ handlerName:callHandlerName, data:{func:func,params:params}}, responseCallback)
 	}
 
@@ -73,11 +75,11 @@
                 console.log('responseId is'+message.responseId)
 				var responseCallback = responseCallbacks[message.responseId]
 				if (!responseCallback) { return; }
-				if (callHandlerName == "QFH5CallNative"){
+				if (callHandlerName == CALL_NATIVE_HANDLE_NAME){
 				    responseCallback(message.responseData)
-				} else if (callHandlerName == "QFHybrid"){
+				} else if (callHandlerName == CALL_HANDLE_NAME){
 				    var obj = JSON.parse(message.responseData)
-				    console.log('QFHybrid into:'+obj)
+				    console.log('response obj:'+obj)
 				    responseCallback(obj)
 				}
 				delete responseCallbacks[message.responseId]
@@ -117,7 +119,7 @@
 		}
 	}
 
-	var WebViewJavascriptBridge = window.QFPAY = window.WebViewJavascriptBridge = {
+	var WebViewJavascriptBridge = window.JSBridge = window.WebViewJavascriptBridge = {
 		init: init,
 		send: send,
 		registerHandler: registerHandler,

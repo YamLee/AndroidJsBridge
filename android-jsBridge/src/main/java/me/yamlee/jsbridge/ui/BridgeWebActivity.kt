@@ -34,8 +34,8 @@ import timber.log.Timber
  * 包含JSBridge功能的Web Activity类
  * @author LiYan
  */
-abstract class BridgeWebActivity : AppCompatActivity(), NativeComponentProvider, NearWebLogicView,
-        NearWebLogicView.WebLogicListener {
+abstract class BridgeWebActivity : AppCompatActivity(), NativeComponentProvider, WebActionView,
+        WebActionView.WebLogicListener {
 
     companion object {
         const val REQUEST_CODE_NEW_WEB_ACTIVITY = 15
@@ -79,11 +79,11 @@ abstract class BridgeWebActivity : AppCompatActivity(), NativeComponentProvider,
         tvDefaultError = defaultErrorView?.findViewById(R.id.common_tv_error) as TextView
     }
 
-    override fun provideWebLogicView(): NearWebLogicView {
+    override fun provideWebLogicView(): WebActionView {
         return this
     }
 
-    override fun provideWebInteraction(): NearWebLogicView.WebLogicListener {
+    override fun provideWebInteraction(): WebActionView.WebLogicListener {
         return this
     }
 
