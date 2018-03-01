@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:visibility="gone"
-    tools:visibility="gone">
+    tools:visibility="visible">
 
     <TextView
         android:id="@+id/common_tv_error"

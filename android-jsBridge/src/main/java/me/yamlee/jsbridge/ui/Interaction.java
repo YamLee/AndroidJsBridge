@@ -6,9 +6,9 @@ import android.support.annotation.AnimRes;
 import android.support.v4.app.Fragment;
 
 /**
- * Essential模块基础Activity交互接口
+ * 基础Activity交互接口
  */
-public interface NearInteraction {
+public interface Interaction {
     /**
      * 跳转到下一个Activity,intent不含启动context和目的activity class
      *

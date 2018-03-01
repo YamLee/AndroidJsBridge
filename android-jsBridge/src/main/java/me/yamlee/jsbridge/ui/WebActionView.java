@@ -101,7 +101,7 @@ public interface WebActionView extends ActionView {
     void renderWebViewLoadProgress(int newProgress);
 
 
-    interface WebLogicListener extends NearInteraction {
+    interface WebLogicListener extends Interaction {
         /**
          * 跳转到二维码扫描界面
          *

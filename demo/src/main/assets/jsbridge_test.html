@@ -121,6 +121,19 @@
       })
     }
 
+    function test_show_js_time(){
+      var date = new Date()
+      JSBridge.call('logTime',
+       {
+        time: date.toString()
+       },
+       function(cb){
+        console.log(cb.ret)
+        alert(cb.qrcode)
+        }
+      )
+    }
+
     </script>
 </head>
 <body>
@@ -150,6 +163,8 @@
     <button class=".margin" type="button" onclick="test_clear_nav_menus()">清除菜单</button>
     <br>
     <button class=".margin" type="button" onclick="test_scan_qrcode()">扫描二维码</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_show_js_time()">打印Js时间</button>
     <br>
 </div>
 <script type="text/javascript" charset="utf-8">

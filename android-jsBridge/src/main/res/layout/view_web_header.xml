@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/v_title"
     android:layout_width="match_parent"
     android:layout_height="@dimen/view_title_bar_height">
 
@@ -23,6 +22,7 @@
         android:paddingRight="15dp"
         android:scaleType="centerInside"
         android:src="@drawable/icn_close"
+        tools:visibility="visible"
         android:visibility="gone" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:gravity="center"
         android:maxWidth="200dp"
         android:singleLine="true"
-        tools:text="标题标题标题标题标题标题标题标题" />
+        tools:text="标题标题" />
 
     <FrameLayout
         android:layout_width="wrap_content"

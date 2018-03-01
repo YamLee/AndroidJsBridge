@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import me.yamlee.jsbridge.BaseJsCallProcessor;
 import me.yamlee.jsbridge.JsCallData;
 import me.yamlee.jsbridge.NativeComponentProvider;
-import me.yamlee.jsbridge.ui.NearInteraction;
+import me.yamlee.jsbridge.ui.Interaction;
 
 /**
  * 根据uri做指定的跳转动作，比如Uri是"nearmcht://view-login"就会跳转到登录界面
@@ -31,7 +31,7 @@ public class OpenUriProcessor extends BaseJsCallProcessor {
             try {
                 jsonObject = new JSONObject(callData.getParams());
                 String uri = (String) jsonObject.get("uri");
-                NearInteraction interaction = componentProvider.provideWebInteraction();
+                Interaction interaction = componentProvider.provideWebInteraction();
                 Context context = componentProvider.provideApplicationContext();
                 return true;
             } catch (JSONException e) {
