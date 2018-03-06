@@ -34,8 +34,8 @@ import timber.log.Timber
  *
  * @author yamlee
  */
-class BridgeActivityDelegate(private val mActivity: Activity) : NativeComponentProvider,
-        WebActionView, WebActionView.WebLogicListener, BridgeWebAction {
+open class BridgeActivityDelegate(private val mActivity: Activity) : NativeComponentProvider,
+        WebActionView, WebActionView.WebLogicListener {
 
     companion object {
         const val REQUEST_CODE_NEW_WEB_ACTIVITY = 15

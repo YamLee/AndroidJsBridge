@@ -129,6 +129,11 @@ public interface WebActionView extends ActionView {
          * 清除掉先前打开的web也
          */
         void clearTopWebActivity();
+
+        /**
+         * 根据指定的url加载网页
+         */
+        void loadUrl(String url);
     }
 
 }

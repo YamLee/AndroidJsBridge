@@ -12,8 +12,8 @@ class WebActivity : BridgeWebActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addJsCallProcessor(LogTimeJscCallProcessor(activityDelegate))
-        loadUrl("file:///android_asset/jsbridge_test.html")
+        activityDelegate.addJsCallProcessor(LogTimeJscCallProcessor(activityDelegate))
+        activityDelegate.loadUrl("file:///android_asset/jsbridge_test.html")
 //        loadUrl("http://www.baidu.com")
     }
 
