@@ -21,4 +21,11 @@
         <attr name="dx" format="dimension" />
         <attr name="dy" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="WebHeaderView">
+        <attr name="layoutStyle" format="enum" >
+            <enum name="middleLayout" value="0" />
+            <enum name="leftLayout" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>

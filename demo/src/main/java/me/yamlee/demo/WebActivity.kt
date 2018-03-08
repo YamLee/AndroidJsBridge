@@ -1,28 +1,61 @@
 package me.yamlee.demo
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.TextureView
+import me.yamlee.demo.bridge.CustomWebDelegate
+import me.yamlee.demo.jscall.LogTimeJscCallProcessor
+import me.yamlee.demo.jscall.SetHeaderRightProcessor
 import me.yamlee.jsbridge.model.ListIconTextModel
-import me.yamlee.jsbridge.ui.BridgeWebActivity
+import me.yamlee.jsbridge.ui.DelegateListener
 
 /**
  * WebView容器界面
  * @author YamLee
  */
-class WebActivity : BridgeWebActivity() {
+class WebActivity : BaseActivity() {
 
+    companion object {
+        const val ARG_URL = "url"
+
+        fun getIntent(url: String, context: Activity): Intent {
+            val intent = Intent(context, WebActivity::class.java)
+            intent.putExtra(ARG_URL, url)
+            return intent
+        }
+    }
+
+    private lateinit var delegate: CustomWebDelegate
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityDelegate.addJsCallProcessor(LogTimeJscCallProcessor(activityDelegate))
-        activityDelegate.loadUrl("file:///android_asset/jsbridge_test.html")
+        delegate = CustomWebDelegate(this)
+        setContentView(delegate.contentView)
+        delegate.setDelegateListener(object : DelegateListener {
+            override fun onClickErrorView() {
+
+            }
+
+            override fun onClickHeaderRight(clickUri: String?) {
+            }
+
+            override fun onClickMoreMenuItem(menuItem: ListIconTextModel?) {
+            }
+
+        })
+        addJsCallProcessor()
+        val url = intent?.getStringExtra(ARG_URL)
+        if (!TextUtils.isEmpty(url)) {
+            delegate.loadUrl(url!!)
+        } else {
+            delegate.loadUrl("file:///android_asset/jsbridge_test.html")
+        }
 //        loadUrl("http://www.baidu.com")
     }
 
-    override fun onClickErrorView() {
-    }
-
-    override fun onClickTitleRight(clickUri: String?) {
-    }
-
-    override fun onClickMoreMenuItem(listIconTextModel: ListIconTextModel) {
+    private fun addJsCallProcessor() {
+        delegate.addJsCallProcessor(LogTimeJscCallProcessor(delegate))
+        delegate.addJsCallProcessor(SetHeaderRightProcessor(delegate))
     }
 }

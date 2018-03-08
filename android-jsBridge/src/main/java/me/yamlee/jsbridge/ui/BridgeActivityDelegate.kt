@@ -34,7 +34,7 @@ import timber.log.Timber
  *
  * @author yamlee
  */
-open class BridgeActivityDelegate(private val mActivity: Activity) : NativeComponentProvider,
+abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeComponentProvider,
         WebActionView, WebActionView.WebLogicListener {
 
     companion object {
@@ -48,16 +48,16 @@ open class BridgeActivityDelegate(private val mActivity: Activity) : NativeCompo
 
     val contentView: View
 
-    private val webHeader: WebHeaderView
-    private val mWebContainer: FrameLayout
-    private val urlLoadingProgress: ProgressBar
-    private val webView: NearWebView
-    private val defaultErrorView: View
-    private val tvDefaultError: TextView?
-    private var loadingDialog: Dialog? = null
+    protected val webHeader: WebHeaderView
+    protected val mWebContainer: FrameLayout
+    protected val urlLoadingProgress: ProgressBar
+    protected val webView: NearWebView
+    protected val defaultErrorView: View
+    protected val tvDefaultError: TextView?
+    protected var loadingDialog: Dialog? = null
 
-    private var mWebViewClient: WebViewClient? = null
-    private var mChromeClient: WebChromeClient? = null
+    protected var mWebViewClient: WebViewClient? = null
+    protected var mChromeClient: WebChromeClient? = null
 
     init {
         val inflater = LayoutInflater.from(mActivity.applicationContext)
@@ -217,7 +217,7 @@ open class BridgeActivityDelegate(private val mActivity: Activity) : NativeCompo
     }
 
     override fun showClose() {
-        webHeader.showCloseBtn()
+        webHeader.showCloseBtn(true)
     }
 
     override fun showHeader(title: String) {
@@ -240,6 +240,9 @@ open class BridgeActivityDelegate(private val mActivity: Activity) : NativeCompo
         webView.loadUrl(url)
     }
 
+    override fun getHeaderView(): WebHeaderView {
+        return webHeader
+    }
 
     override fun startNearActivity(intent: Intent?, activityClass: Class<out Activity>?) {
         try {
@@ -387,6 +390,11 @@ open class BridgeActivityDelegate(private val mActivity: Activity) : NativeCompo
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
             super.onProgressChanged(view, newProgress)
             renderWebViewLoadProgress(newProgress)
+        }
+
+        override fun onReceivedTitle(view: WebView?, title: String?) {
+            super.onReceivedTitle(view, title)
+            renderTitle(title ?: "")
         }
     }
 

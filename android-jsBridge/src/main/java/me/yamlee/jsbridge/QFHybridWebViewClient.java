@@ -10,6 +10,7 @@ import java.util.Map;
 
 import me.yamlee.jsbridge.jscall.AlertProcessor;
 import me.yamlee.jsbridge.jscall.CloseProcessor;
+import me.yamlee.jsbridge.jscall.SetHeaderProcessor;
 import me.yamlee.jsbridge.jscall.ToastProcessor;
 import timber.log.Timber;
 
@@ -40,6 +41,7 @@ public class QFHybridWebViewClient extends WVJBWebViewClient {
         registerJsCallProcessor(new AlertProcessor(componentProvider));
         registerJsCallProcessor(new CloseProcessor(componentProvider));
         registerJsCallProcessor(new ToastProcessor(componentProvider));
+        registerJsCallProcessor(new SetHeaderProcessor(componentProvider));
     }
 
 

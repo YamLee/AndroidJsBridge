@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import me.yamlee.jsbridge.utils.ToastUtil
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

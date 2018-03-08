@@ -1,6 +1,7 @@
 package me.yamlee.jsbridge.widget.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -12,6 +13,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -25,40 +30,80 @@ import me.yamlee.jsbridge.utils.ScreenUtil;
  * @author yamlee
  */
 public class WebHeaderView extends FrameLayout {
+    private static int LAYOUT_STYLE_MIDDLE = 0;
+    private static int LAYOUT_STYLE_LEFT = 1;
     private TextView tvTitle, tvTitleRight;
     private ImageView ivClose, ivBack, ivMenu, sdvTitleRight;
     private SimplePopWindow simplePopWindow;
+    private int layoutStyle = 0;
+    private View contentView;
+    private Context mContext;
 
 
     public WebHeaderView(@NonNull Context context) {
         super(context);
-        initView(context);
+        initView(context, null);
     }
 
     public WebHeaderView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initView(context);
+        initView(context, attrs);
     }
 
     public WebHeaderView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView(context);
+        initView(context, attrs);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public WebHeaderView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initView(context);
+        initView(context, attrs);
     }
 
-    private void initView(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.view_web_header, this, true);
+    private void initView(Context context, @Nullable AttributeSet attrs) {
+        mContext = context;
+        TypedArray a = context.getTheme().obtainStyledAttributes(
+                attrs,
+                R.styleable.WebHeaderView,
+                0, 0);
+        try {
+            layoutStyle = a.getInt(R.styleable.WebHeaderView_layoutStyle, 0);
+        } finally {
+            a.recycle();
+        }
+        if (layoutStyle == LAYOUT_STYLE_MIDDLE) {
+            contentView = LayoutInflater.from(context).inflate(R.layout.view_web_header_layout_middle, null, false);
+        } else {
+            contentView = LayoutInflater.from(context).inflate(R.layout.view_web_header_layout_left, null, false);
+        }
+        addView(contentView);
+        initView();
+    }
+
+    private void initView() {
         tvTitle = findViewById(R.id.tv_title);
         ivClose = findViewById(R.id.iv_close);
         ivBack = findViewById(R.id.iv_back);
         ivMenu = findViewById(R.id.iv_menu);
         sdvTitleRight = findViewById(R.id.sdv_titles_right);
         tvTitleRight = findViewById(R.id.tv_title_right);
+    }
+
+    public void setLayoutStyleMiddle() {
+        removeView(contentView);
+        contentView = LayoutInflater.from(mContext).inflate(R.layout.view_web_header_layout_middle, null, false);
+        addView(contentView);
+        initView();
+        requestLayout();
+    }
+
+    public void setLayoutStyleLeft() {
+        removeView(contentView);
+        contentView = LayoutInflater.from(mContext).inflate(R.layout.view_web_header_layout_left, null, false);
+        addView(contentView);
+        initView();
+        requestLayout();
     }
 
     public void setTitle(String text) {
@@ -74,18 +119,22 @@ public class WebHeaderView extends FrameLayout {
     }
 
     public void showRightBtn(String text, OnClickListener btnClickListener) {
-        tvTitleRight.setVisibility(GONE);
+        tvTitleRight.setVisibility(VISIBLE);
         tvTitleRight.setText(text);
         tvTitleRight.setOnClickListener(btnClickListener);
 
-        sdvTitleRight.setVisibility(VISIBLE);
+        sdvTitleRight.setVisibility(GONE);
     }
 
     public void showRightBtn(Uri imageUri, OnClickListener btnClickListener) {
-        tvTitleRight.setVisibility(VISIBLE);
+        tvTitleRight.setVisibility(GONE);
 
-        sdvTitleRight.setVisibility(GONE);
-        sdvTitleRight.setImageURI(imageUri);
+        sdvTitleRight.setVisibility(VISIBLE);
+        Glide.with(getContext())
+                .load(imageUri)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .into(sdvTitleRight);
         sdvTitleRight.setOnClickListener(btnClickListener);
     }
 
@@ -113,12 +162,38 @@ public class WebHeaderView extends FrameLayout {
         }
     }
 
-    public void showCloseBtn() {
-        ivClose.setVisibility(VISIBLE);
+    public void showCloseBtn(boolean visible) {
+        if (visible) {
+            ivClose.setVisibility(VISIBLE);
+        } else {
+            ivClose.setVisibility(GONE);
+        }
     }
 
-    public void hideCloseBtn() {
-        ivClose.setVisibility(GONE);
+    public void showBackBtn(boolean visible) {
+        if (visible) {
+            ivBack.setVisibility(VISIBLE);
+        } else {
+            ivBack.setVisibility(GONE);
+        }
+    }
+
+    /**
+     * 返回按键按钮点击事件设置
+     *
+     * @param listener
+     */
+    public void setBackBtnClickListener(View.OnClickListener listener) {
+        ivBack.setOnClickListener(listener);
+    }
+
+    /**
+     * 关闭按钮点击事件设置
+     *
+     * @param listener
+     */
+    public void setCloseBtnClickListener(View.OnClickListener listener) {
+        ivClose.setOnClickListener(listener);
     }
 
 

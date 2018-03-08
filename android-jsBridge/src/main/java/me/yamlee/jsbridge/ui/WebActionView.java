@@ -5,6 +5,7 @@ import android.content.Intent;
 import java.util.List;
 
 import me.yamlee.jsbridge.model.ListIconTextModel;
+import me.yamlee.jsbridge.widget.view.WebHeaderView;
 
 
 /**
@@ -99,6 +100,13 @@ public interface WebActionView extends ActionView {
      * @param newProgress 当前webView加载进度
      */
     void renderWebViewLoadProgress(int newProgress);
+
+    /**
+     * 获取头部Header view
+     *
+     * @return
+     */
+    WebHeaderView getHeaderView();
 
 
     interface WebLogicListener extends Interaction {

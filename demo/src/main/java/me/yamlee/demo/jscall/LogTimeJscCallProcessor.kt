@@ -1,4 +1,4 @@
-package me.yamlee.demo
+package me.yamlee.demo.jscall
 
 import me.yamlee.jsbridge.BaseJsCallProcessor
 import me.yamlee.jsbridge.JsCallData

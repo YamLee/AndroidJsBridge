@@ -72,7 +72,7 @@
 			var messageHandler
 			
 			if (message.responseId) {
-                console.log('responseId is'+message.responseId)
+                console.log('responseId is '+message.responseId)
 				var responseCallback = responseCallbacks[message.responseId]
 				if (!responseCallback) { return; }
 				if (callHandlerName == CALL_NATIVE_HANDLE_NAME){
@@ -113,10 +113,9 @@
 		if (receiveMessageQueue) {
 			console.log('message queue prepared')
 			receiveMessageQueue.push(messageJSON)
-		} else {
-			console.log('dispatch message')
-			_dispatchMessageFromObjC(messageJSON)
 		}
+		console.log('dispatch message')
+		_dispatchMessageFromObjC(messageJSON)
 	}
 
 	var WebViewJavascriptBridge = window.JSBridge = window.WebViewJavascriptBridge = {

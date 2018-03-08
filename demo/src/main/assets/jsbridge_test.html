@@ -19,6 +19,7 @@
     .margin{
         margin:5px
     }
+
     </style>
 
     <script type="text/javascript" charset="utf-8">
@@ -34,6 +35,7 @@
       JSBridge.call('toast', {
           msg: '测试 提示'
       }, function(cb){
+          console.log('111111111')
           console.log(cb.ret)
       })
     }
@@ -134,11 +136,74 @@
       )
     }
 
+    function test_set_header(){
+      JSBridge.call('setHeader',
+       {
+        layout: 'left',
+        title: 'This is a title',
+        showBackBtn: 'true',
+        showCloseBtn: 'true',
+        bgColor: '#3F51B5'
+       },
+       function(cb){
+        console.log(cb.ret)
+        alert(cb.qrcode)
+        }
+      )
+    }
+
+    function test_set_header2(){
+      JSBridge.call('setHeader',
+       {
+        layout: 'middle',
+        title: 'This is new title',
+        showBackBtn: 'false',
+        showCloseBtn: 'false',
+        bgColor: '#FF4081'
+       },
+       function(cb){
+        console.log(cb.ret)
+        alert(cb.qrcode)
+        }
+      )
+
+    }
+
+    function test_set_header_right1(){
+      JSBridge.call('setHeaderRight',
+       {
+         rightBtn: '跳转百度',
+         clickJumpUrl: 'http://www.baidu.com'
+       },
+       function(cb){
+        console.log(cb.ret)
+        alert(cb.qrcode)
+        }
+      )
+
+    }
+
+    function test_set_header_right2(){
+      JSBridge.call('setHeaderRight',
+       {
+         rightBtn: 'http://7qn9re.com1.z0.glb.clouddn.com/icon_people.png',
+         clickJumpUrl: 'http://www.baidu.com'
+       },
+       function(cb){
+        console.log(cb.ret)
+        alert(cb.qrcode)
+        }
+      )
+
+    }
+
+
     </script>
 </head>
 <body>
 <script id="__bs_script__">
     //<![CDATA[document.write("<script async src='/browser-sync/browser-sync-client.2.13.0.js'><\/script>".replace("HOST", location.hostname));//]]>
+
 </script>
 
 <div class="container">
@@ -148,7 +213,7 @@
     <br>
     <button class=".margin" type="button" onclick="test_close()">关闭窗口</button>
     <br>
-    <button class=".margin" type="button" onclick="test_openuri()">跳转储值引导页</button>
+    <button class=".margin" type="button" onclick="test_openuri()">打开新界面</button>
     <br>
     <button class=".margin" type="button" onclick="test_get_device_info()">获取设备信息</button>
     <br>
@@ -166,6 +231,15 @@
     <br>
     <button class=".margin" type="button" onclick="test_show_js_time()">打印Js时间</button>
     <br>
+    <button class=".margin" type="button" onclick="test_set_header()">设置标题样式1</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_set_header2()">设置标题样式2</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_set_header_right1()">设置标题右边文字点击</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_set_header_right2()">设置标题右边图片点击</button>
+    <br>
+
 </div>
 <script type="text/javascript" charset="utf-8">
     (function () { var script = document.createElement('script');
@@ -174,6 +248,7 @@
         eruda.init();
         JSBridge.init();
     } })()
+
 </script>
 </body>
 </html>
