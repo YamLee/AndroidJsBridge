@@ -10,6 +10,7 @@ import java.util.Map;
 
 import me.yamlee.jsbridge.jscall.AlertProcessor;
 import me.yamlee.jsbridge.jscall.CloseProcessor;
+import me.yamlee.jsbridge.jscall.DefaultProcessor;
 import me.yamlee.jsbridge.jscall.SetHeaderProcessor;
 import me.yamlee.jsbridge.jscall.ToastProcessor;
 import timber.log.Timber;
@@ -38,6 +39,7 @@ public class QFHybridWebViewClient extends WVJBWebViewClient {
     }
 
     private void registerCallProcessors(NativeComponentProvider componentProvider) {
+        registerJsCallProcessor(new DefaultProcessor(componentProvider));
         registerJsCallProcessor(new AlertProcessor(componentProvider));
         registerJsCallProcessor(new CloseProcessor(componentProvider));
         registerJsCallProcessor(new ToastProcessor(componentProvider));
@@ -73,7 +75,9 @@ public class QFHybridWebViewClient extends WVJBWebViewClient {
                     String.format("%s Processor have not handled target js call", jsCallProcessor.getFuncName());
             Timber.i(msg);
         } else {
-            msg = String.format("No JsCallProcessor can handle jsCall %s ", jsCallProcessor.getFuncName());
+            JsCallProcessor defaultProcessor = jsCallProcessors.get(DefaultProcessor.FUNC_NAME);
+            defaultProcessor.process(callData, callback);
+            msg = String.format("No JsCallProcessor can handle jsCall %s ", callData.getFunc());
             Timber.e(msg);
         }
     }

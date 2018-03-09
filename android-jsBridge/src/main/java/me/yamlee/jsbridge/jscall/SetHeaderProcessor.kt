@@ -37,8 +37,20 @@ class SetHeaderProcessor(provider: NativeComponentProvider) : BaseJsCallProcesso
             if (!TextUtils.isEmpty(request.title)) {
                 headerView.title = request.title
             }
+            if (!TextUtils.isEmpty(request.titleColor)) {
+                headerView.setTitleColor(Color.parseColor(request.titleColor))
+            }
+
             headerView.showCloseBtn(request.showCloseBtn == TRUE)
+            if (!TextUtils.isEmpty(request.closeBtnColor)) {
+                headerView.setCloseBtnColor(Color.parseColor(request.closeBtnColor))
+            }
+
             headerView.showBackBtn(request.showBackBtn == TRUE)
+            if (!TextUtils.isEmpty(request.backBtnColor)) {
+                headerView.setBackBtnColor(Color.parseColor(request.backBtnColor))
+            }
+
 
             if (!TextUtils.isEmpty(request.bgColor)) {
                 headerView.setBackgroundColor(Color.parseColor(request.bgColor))
@@ -51,8 +63,11 @@ class SetHeaderProcessor(provider: NativeComponentProvider) : BaseJsCallProcesso
     inner class SetHeaderRequest {
         var layout: String = ""
         var title: String = ""
+        var titleColor: String = ""
         var showBackBtn: String = "true"
+        var backBtnColor = ""
         var showCloseBtn: String = "false"
+        var closeBtnColor = ""
         var bgColor: String = ""
     }
 

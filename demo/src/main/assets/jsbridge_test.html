@@ -141,8 +141,11 @@
        {
         layout: 'left',
         title: 'This is a title',
+        titleColor: '#ffffff',
         showBackBtn: 'true',
+        backBtnColor: '#ffffff',
         showCloseBtn: 'true',
+        closeBtnColor: '#ffffff',
         bgColor: '#3F51B5'
        },
        function(cb){
@@ -197,6 +200,20 @@
 
     }
 
+    function test_error(){
+      JSBridge.call('qqq',
+       {
+         rightBtn: 'http://7qn9re.com1.z0.glb.clouddn.com/icon_people.png',
+         clickJumpUrl: 'http://www.baidu.com'
+       },
+       function(cb){
+        console.log(cb.ret)
+        alert(cb.qrcode)
+        }
+      )
+
+    }
+
 
     </script>
 </head>
@@ -238,6 +255,8 @@
     <button class=".margin" type="button" onclick="test_set_header_right1()">设置标题右边文字点击</button>
     <br>
     <button class=".margin" type="button" onclick="test_set_header_right2()">设置标题右边图片点击</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_error()">错误点击</button>
     <br>
 
 </div>
