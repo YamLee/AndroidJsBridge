@@ -15,7 +15,7 @@ public interface Interaction {
      * @param intent        通过Activity的静态getCallIntent()方法构造intent
      * @param activityClass TargetActivity.class类
      */
-    void startNearActivity(Intent intent, Class<? extends Activity> activityClass);
+    void startActivity(Intent intent, Class<? extends Activity> activityClass);
 
 
     /**
@@ -25,7 +25,7 @@ public interface Interaction {
      *
      * @param intent intent
      */
-    void startNearActivity(Intent intent);
+    void startActivity(Intent intent);
 
     /**
      * 跳转到下一个可以接受该action的Activity,
@@ -43,7 +43,7 @@ public interface Interaction {
      * @param intent      带有启动Context的Intent
      * @param requestCode 请求码
      */
-    void startNearActivityForResult(Intent intent, int requestCode);
+    void startActivityForResult(Intent intent, int requestCode);
 
     /**
      * 启动activity带有result回调
@@ -52,7 +52,7 @@ public interface Interaction {
      * @param requestCode   请求码
      * @param activityClass 需要跳转的Activity类
      */
-    void startNearActivityForResult(Intent intent, int requestCode, Class<? extends Activity> activityClass);
+    void startActivityForResult(Intent intent, int requestCode, Class<? extends Activity> activityClass);
 
 
     /**

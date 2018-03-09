@@ -11,6 +11,6 @@ class SetHeaderRightProcessor(val provider: CustomComponentProvider) : AbstractS
 
     override fun onClickRightBtn(clickJumpUrl: String) {
         val intent = WebActivity.getIntent(clickJumpUrl, provider.provideActivityContext())
-        provider.provideWebInteraction().startNearActivity(intent)
+        provider.provideWebInteraction().startActivity(intent)
     }
 }

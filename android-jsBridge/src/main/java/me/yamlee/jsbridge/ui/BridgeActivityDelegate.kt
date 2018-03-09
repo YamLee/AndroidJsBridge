@@ -244,7 +244,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         return webHeader
     }
 
-    override fun startNearActivity(intent: Intent?, activityClass: Class<out Activity>?) {
+    override fun startActivity(intent: Intent?, activityClass: Class<out Activity>?) {
         try {
             if (intent?.resolveActivity(mActivity.packageManager) != null) {
                 intent.`package` = mActivity.packageName
@@ -260,7 +260,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         }
     }
 
-    override fun startNearActivity(intent: Intent?) {
+    override fun startActivity(intent: Intent?) {
         try {
             if (intent?.resolveActivity(mActivity.packageManager) != null) {
                 mActivity.startActivity(intent)
@@ -279,7 +279,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
     }
 
-    override fun startNearActivityForResult(intent: Intent, requestCode: Int) {
+    override fun startActivityForResult(intent: Intent, requestCode: Int) {
         try {
             mActivity.startActivityForResult(intent, requestCode)
         } catch (e: ActivityNotFoundException) {
@@ -287,7 +287,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         }
     }
 
-    override fun startNearActivityForResult(intent: Intent?, requestCode: Int, activityClass: Class<out Activity>) {
+    override fun startActivityForResult(intent: Intent?, requestCode: Int, activityClass: Class<out Activity>) {
         try {
             intent?.setClass(mActivity, activityClass)
             mActivity.startActivityForResult(intent, requestCode)
@@ -333,7 +333,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
     override fun openUriActivity(intent: Intent) {
-        startNearActivityForResult(intent, REQUEST_CODE_NEW_WEB_ACTIVITY)
+        startActivityForResult(intent, REQUEST_CODE_NEW_WEB_ACTIVITY)
     }
 
     override fun clearTopWebActivity() {
