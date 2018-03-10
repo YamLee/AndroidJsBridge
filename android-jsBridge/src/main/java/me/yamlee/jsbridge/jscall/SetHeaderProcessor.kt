@@ -55,6 +55,10 @@ class SetHeaderProcessor(provider: NativeComponentProvider) : BaseJsCallProcesso
             if (!TextUtils.isEmpty(request.bgColor)) {
                 headerView.setBackgroundColor(Color.parseColor(request.bgColor))
             }
+
+            if (!TextUtils.isEmpty(request.dividerColor)) {
+                headerView.setDivideColor(Color.parseColor(request.dividerColor))
+            }
             return true
         }
         return false
@@ -69,6 +73,7 @@ class SetHeaderProcessor(provider: NativeComponentProvider) : BaseJsCallProcesso
         var showCloseBtn: String = "false"
         var closeBtnColor = ""
         var bgColor: String = ""
+        var dividerColor: String = ""
     }
 
 }

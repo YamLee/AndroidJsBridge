@@ -98,6 +98,7 @@
 
 
     <View
+        android:id="@+id/v_divide"
         style="@style/DivideLine.Horizontal"
         android:layout_alignParentBottom="true" />
 </RelativeLayout>

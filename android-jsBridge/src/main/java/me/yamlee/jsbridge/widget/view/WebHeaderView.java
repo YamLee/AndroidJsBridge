@@ -38,6 +38,7 @@ public class WebHeaderView extends FrameLayout {
     private static int LAYOUT_STYLE_LEFT = 1;
     private TextView tvTitle, tvTitleRight;
     private ImageView ivClose, ivBack, ivMenu, sdvTitleRight;
+    private View divider;
     private SimplePopWindow simplePopWindow;
     private int layoutStyle = 0;
     private View contentView;
@@ -92,6 +93,7 @@ public class WebHeaderView extends FrameLayout {
         ivMenu = findViewById(R.id.iv_menu);
         sdvTitleRight = findViewById(R.id.sdv_titles_right);
         tvTitleRight = findViewById(R.id.tv_title_right);
+        divider = findViewById(R.id.v_divide);
     }
 
     public void setLayoutStyleMiddle() {
@@ -190,6 +192,10 @@ public class WebHeaderView extends FrameLayout {
     public void setBackBtnColor(int color) {
         Drawable wrapDrawable = DrawableCompat.wrap(ivBack.getDrawable().mutate());
         DrawableCompat.setTintList(wrapDrawable, ColorStateList.valueOf(color));
+    }
+
+    public void setDivideColor(int color) {
+        divider.setBackgroundColor(color);
     }
 
     /**
