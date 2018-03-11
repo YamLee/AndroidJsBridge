@@ -57,8 +57,8 @@
             <ImageView
                 android:id="@+id/sdv_titles_right"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical"
                 android:scaleType="centerInside"
                 android:visibility="gone"
                 tools:src="@drawable/cicle_rec_background"
