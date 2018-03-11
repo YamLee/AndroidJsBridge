@@ -43,6 +43,8 @@ public class WebHeaderView extends FrameLayout {
     private int layoutStyle = 0;
     private View contentView;
     private Context mContext;
+    private OnClickListener mBackBtnListener;
+    private OnClickListener mCloseBtnListener;
 
 
     public WebHeaderView(@NonNull Context context) {
@@ -89,7 +91,9 @@ public class WebHeaderView extends FrameLayout {
     private void initView() {
         tvTitle = findViewById(R.id.tv_title);
         ivClose = findViewById(R.id.iv_close);
+        ivClose.setOnClickListener(mCloseBtnListener);
         ivBack = findViewById(R.id.iv_back);
+        ivBack.setOnClickListener(mBackBtnListener);
         ivMenu = findViewById(R.id.iv_menu);
         sdvTitleRight = findViewById(R.id.sdv_titles_right);
         tvTitleRight = findViewById(R.id.tv_title_right);
@@ -204,6 +208,7 @@ public class WebHeaderView extends FrameLayout {
      * @param listener
      */
     public void setBackBtnClickListener(View.OnClickListener listener) {
+        mBackBtnListener = listener;
         ivBack.setOnClickListener(listener);
     }
 
@@ -213,6 +218,7 @@ public class WebHeaderView extends FrameLayout {
      * @param listener
      */
     public void setCloseBtnClickListener(View.OnClickListener listener) {
+        mCloseBtnListener = listener;
         ivClose.setOnClickListener(listener);
     }
 

@@ -268,8 +268,13 @@ public class WVJBWebViewClient extends WebViewClient {
 
     @Override
     public void onPageFinished(final WebView view, String url) {
-        new LoadBridgeAsyncTask(webView.getContext()).execute();
         super.onPageFinished(view, url);
+        new LoadBridgeAsyncTask(webView.getContext()).execute();
+    }
+
+    @Override
+    public void onLoadResource(WebView view, String url) {
+        super.onLoadResource(view, url);
     }
 
     private class LoadBridgeAsyncTask extends AsyncTask<Void, Void, String> {
