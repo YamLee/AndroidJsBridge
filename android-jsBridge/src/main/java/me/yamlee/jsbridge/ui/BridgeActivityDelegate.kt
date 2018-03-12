@@ -351,8 +351,8 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
                 }
 
             }
-            mWebViewClient = MyWebViewClient(webView, wvBridgeHandler, this)
-            (mWebViewClient as MyWebViewClient).enableLogging()
+            mWebViewClient = DefaultWebViewClient(webView, wvBridgeHandler, this)
+            (mWebViewClient as DefaultWebViewClient).enableLogging()
         }
 
         return mWebViewClient!!
@@ -360,19 +360,19 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
     override fun onCreateWebChromeClient(): WebChromeClient {
         if (mChromeClient == null) {
-            mChromeClient = MyChromeClient(mAppContext)
+            mChromeClient = DefaultChromeClient(mAppContext)
         }
         return mChromeClient!!
     }
 
     override fun addJsCallProcessor(processor: JsCallProcessor) {
-        val myWebViewClient: MyWebViewClient = onCreateWebViewClient() as MyWebViewClient
+        val myWebViewClient: QFHybridWebViewClient = onCreateWebViewClient() as QFHybridWebViewClient
         myWebViewClient.registerJsCallProcessor(processor)
     }
 
 
-    inner class MyWebViewClient(webView: WebView, wvjbHandler: WVJBWebViewClient.WVJBHandler,
-                                componentProvider: NativeComponentProvider)
+    open inner class DefaultWebViewClient(webView: WebView, wvjbHandler: WVJBWebViewClient.WVJBHandler,
+                                             componentProvider: NativeComponentProvider)
         : QFHybridWebViewClient(webView, wvjbHandler, componentProvider) {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
@@ -386,7 +386,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
     }
 
-    inner class MyChromeClient(context: Context) : BridgeWebChromeClient(context) {
+    open inner class DefaultChromeClient(context: Context) : BridgeWebChromeClient(context) {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
             super.onProgressChanged(view, newProgress)
             renderWebViewLoadProgress(newProgress)
