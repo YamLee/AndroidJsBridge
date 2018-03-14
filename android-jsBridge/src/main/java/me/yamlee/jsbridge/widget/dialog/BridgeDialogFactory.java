@@ -11,7 +11,7 @@ import me.yamlee.jsbridge.widget.dialog.internel.SingleBtnConfirmDialog;
  *
  * @author yamlee
  */
-public class NearDialogFactory {
+public class BridgeDialogFactory {
 
     /**
      * 通用确认，取消信息提示按钮弹框

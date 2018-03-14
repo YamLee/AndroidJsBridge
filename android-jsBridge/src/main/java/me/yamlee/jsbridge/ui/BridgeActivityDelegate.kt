@@ -24,8 +24,8 @@ import me.yamlee.jsbridge.model.ListIconTextModel
 import me.yamlee.jsbridge.utils.InputTypeUtil
 import me.yamlee.jsbridge.utils.SnackBarUtils
 import me.yamlee.jsbridge.utils.ToastUtil
-import me.yamlee.jsbridge.widget.dialog.NearDialogFactory
-import me.yamlee.jsbridge.widget.view.NearWebView
+import me.yamlee.jsbridge.widget.dialog.BridgeDialogFactory
+import me.yamlee.jsbridge.widget.view.BridgeWebView
 import me.yamlee.jsbridge.widget.view.WebHeaderView
 import timber.log.Timber
 
@@ -51,7 +51,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     protected val webHeader: WebHeaderView
     protected val mWebContainer: FrameLayout
     protected val urlLoadingProgress: ProgressBar
-    protected val webView: NearWebView
+    protected val webView: BridgeWebView
     protected val defaultErrorView: View
     protected val tvDefaultError: TextView?
     protected var loadingDialog: Dialog? = null
@@ -110,7 +110,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         if (loadingDialog != null && loadingDialog!!.isShowing) {
             loadingDialog!!.dismiss()
         }
-        loadingDialog = NearDialogFactory.getLoadingDialogBuilder()
+        loadingDialog = BridgeDialogFactory.getLoadingDialogBuilder()
                 .setMsg(msg)
                 .setTouchOutDismiss(false)
                 .build(mActivity)
@@ -179,7 +179,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
     override fun showAlert(title: String, content: String) {
-        NearDialogFactory.getSingleBtnDialogBuilder()
+        BridgeDialogFactory.getSingleBtnDialogBuilder()
                 .setTitle(title)
                 .setMsg(content)
                 .build(mActivity).show()

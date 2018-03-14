@@ -26,29 +26,29 @@ import timber.log.Timber;
  *
  * @author yamlee
  */
-public class NearWebView extends WebView {
-    public NearWebView(Context context) {
+public class BridgeWebView extends WebView {
+    public BridgeWebView(Context context) {
         super(context);
         init();
     }
 
-    public NearWebView(Context context, AttributeSet attrs) {
+    public BridgeWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public NearWebView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BridgeWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public NearWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public BridgeWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
 
-    public NearWebView(Context context, AttributeSet attrs, int defStyleAttr, boolean privateBrowsing) {
+    public BridgeWebView(Context context, AttributeSet attrs, int defStyleAttr, boolean privateBrowsing) {
         super(context, attrs, defStyleAttr, privateBrowsing);
         init();
     }
@@ -74,17 +74,17 @@ public class NearWebView extends WebView {
         }
         settings.setBuiltInZoomControls(false);
         //设置UA user-agent
-        String appVersion = "/version_name:" + ApkUtil.getVersionName(getContext()) +
-                ";version_code:" + ApkUtil.getVersionCode(getContext());
-
-        String deviceName = "/device_name:" + DeviceUtil.getDeviceName() +
-                ";deviceid:" + DeviceUtil.getDeviceID(getContext());
-
-        String osVersion = "/os version:" + DeviceUtil.getOsVersionStr() + ";"
-                + DeviceUtil.getOsVersion();
-
-        settings.setUserAgentString(settings.getUserAgentString() + ";QMMWD" +
-                appVersion + deviceName + osVersion);
+//        String appVersion = "/version_name:" + ApkUtil.getVersionName(getContext()) +
+//                ";version_code:" + ApkUtil.getVersionCode(getContext());
+//
+//        String deviceName = "/device_name:" + DeviceUtil.getDeviceName() +
+//                ";deviceid:" + DeviceUtil.getDeviceID(getContext());
+//
+//        String osVersion = "/os version:" + DeviceUtil.getOsVersionStr() + ";"
+//                + DeviceUtil.getOsVersion();
+//
+//        settings.setUserAgentString(settings.getUserAgentString() + ";QMMWD" +
+//                appVersion + deviceName + osVersion);
 
         Timber.i("user-agent====" + settings.getUserAgentString());
         settings.setJavaScriptEnabled(true);
