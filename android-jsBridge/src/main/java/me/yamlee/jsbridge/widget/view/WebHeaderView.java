@@ -3,6 +3,7 @@ package me.yamlee.jsbridge.widget.view;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -181,8 +182,16 @@ public class WebHeaderView extends FrameLayout {
     }
 
     public void setCloseBtnColor(int color) {
-        Drawable wrapDrawable = DrawableCompat.wrap(ivClose.getDrawable().mutate());
-        DrawableCompat.setTintList(wrapDrawable, ColorStateList.valueOf(color));
+        tintDrawable(ivClose, color);
+    }
+
+    private void tintDrawable(ImageView imageView, int color) {
+        if (Build.VERSION.SDK_INT < 21) {
+            imageView.getDrawable().mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        } else {
+            Drawable wrapDrawable = DrawableCompat.wrap(imageView.getDrawable().mutate());
+            DrawableCompat.setTint(wrapDrawable, color);
+        }
     }
 
     public void showBackBtn(boolean visible) {
@@ -194,8 +203,7 @@ public class WebHeaderView extends FrameLayout {
     }
 
     public void setBackBtnColor(int color) {
-        Drawable wrapDrawable = DrawableCompat.wrap(ivBack.getDrawable().mutate());
-        DrawableCompat.setTintList(wrapDrawable, ColorStateList.valueOf(color));
+        tintDrawable(ivBack, color);
     }
 
     public void setDivideColor(int color) {
