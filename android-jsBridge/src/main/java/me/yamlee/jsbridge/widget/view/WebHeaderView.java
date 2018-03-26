@@ -37,6 +37,7 @@ import me.yamlee.jsbridge.utils.ScreenUtil;
 public class WebHeaderView extends FrameLayout {
     private static int LAYOUT_STYLE_MIDDLE = 0;
     private static int LAYOUT_STYLE_LEFT = 1;
+    private FrameLayout layoutRightBtn;
     private TextView tvTitle, tvTitleRight;
     private ImageView ivClose, ivBack, ivMenu, sdvTitleRight;
     private View divider;
@@ -99,6 +100,7 @@ public class WebHeaderView extends FrameLayout {
         sdvTitleRight = findViewById(R.id.sdv_titles_right);
         tvTitleRight = findViewById(R.id.tv_title_right);
         divider = findViewById(R.id.v_divide);
+        layoutRightBtn = findViewById(R.id.fl_title_right);
     }
 
     public void setLayoutStyleMiddle() {
@@ -132,7 +134,7 @@ public class WebHeaderView extends FrameLayout {
     public void showRightBtn(String text, OnClickListener btnClickListener) {
         tvTitleRight.setVisibility(VISIBLE);
         tvTitleRight.setText(text);
-        tvTitleRight.setOnClickListener(btnClickListener);
+        layoutRightBtn.setOnClickListener(btnClickListener);
 
         sdvTitleRight.setVisibility(GONE);
     }
@@ -146,7 +148,7 @@ public class WebHeaderView extends FrameLayout {
                 .priority(Priority.HIGH)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .into(sdvTitleRight);
-        sdvTitleRight.setOnClickListener(btnClickListener);
+        layoutRightBtn.setOnClickListener(btnClickListener);
     }
 
     public void hideRightBtn() {

@@ -5,8 +5,6 @@ import android.text.TextUtils
 import me.yamlee.jsbridge.BaseJsCallProcessor
 import me.yamlee.jsbridge.JsCallData
 import me.yamlee.jsbridge.NativeComponentProvider
-import java.net.URLDecoder
-import java.nio.charset.Charset
 
 /**
  * 设置Web界面头部UI
