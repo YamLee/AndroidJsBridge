@@ -51,8 +51,8 @@
             android:id="@+id/fl_title_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="8dp"
             android:layout_toLeftOf="@+id/iv_menu"
             android:layout_toRightOf="@id/tv_title">
 
