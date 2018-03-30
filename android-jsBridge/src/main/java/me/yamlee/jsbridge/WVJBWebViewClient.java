@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
@@ -20,6 +22,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -168,10 +172,15 @@ public class WVJBWebViewClient extends WebViewClient {
         String script = "WebViewJavascriptBridge._fetchQueue()";
         executeJavascript(script, new JavascriptCallback() {
             public void onReceiveValue(String messageQueueString) {
-                if (messageQueueString == null
-                        || messageQueueString.length() == 0)
-                    return;
-                processQueueMessage(messageQueueString);
+                byte[] bytes = Base64.decode(messageQueueString.getBytes(Charset.forName("UTF-8")), Base64.DEFAULT);
+                String data = "";
+                try {
+                    data = new String(bytes, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                if (TextUtils.isEmpty(data)) return;
+                processQueueMessage(data);
             }
         });
     }

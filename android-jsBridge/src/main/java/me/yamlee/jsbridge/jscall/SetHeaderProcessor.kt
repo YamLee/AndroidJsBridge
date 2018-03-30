@@ -36,10 +36,6 @@ class SetHeaderProcessor(provider: NativeComponentProvider) : BaseJsCallProcesso
                 headerView.setLayoutStyleMiddle()
             }
             if (!TextUtils.isEmpty(request.title)) {
-                if (request.title.startsWith("u")) {
-                    val result = unicodeToString(request.title)
-                    request.title = result
-                }
                 headerView.title = request.title
             }
             if (!TextUtils.isEmpty(request.titleColor)) {
@@ -67,23 +63,6 @@ class SetHeaderProcessor(provider: NativeComponentProvider) : BaseJsCallProcesso
             return true
         }
         return false
-    }
-
-    /**
-     * 将unicode的汉字码转换成utf-8格式的汉字
-     * @param unicode
-     * @return
-     */
-    private fun unicodeToString(unicode: String): String {
-        val string = StringBuffer()
-        unicode.replace("0x", "\\")
-                .split("u")
-                .filter { it.isNotEmpty() }
-                .forEach {
-                    val data = Integer.parseInt(it, 16)
-                    string.append(data.toChar())
-                }
-        return string.toString()
     }
 
     inner class SetHeaderRequest {
