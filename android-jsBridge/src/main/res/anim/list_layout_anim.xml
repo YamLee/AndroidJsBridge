@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:animation="@anim/activity_animation_right_left"
-    android:animationOrder="normal"
-    android:delay="30%">
-
-</layoutAnimation>

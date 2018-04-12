@@ -20,13 +20,13 @@ import android.widget.TextView
 import android.widget.Toast
 import me.yamlee.jsbridge.*
 
-import me.yamlee.jsbridge.model.ListIconTextModel
-import me.yamlee.jsbridge.utils.InputTypeUtil
-import me.yamlee.jsbridge.utils.SnackBarUtils
-import me.yamlee.jsbridge.utils.ToastUtil
-import me.yamlee.jsbridge.widget.dialog.BridgeDialogFactory
-import me.yamlee.jsbridge.widget.view.BridgeWebView
-import me.yamlee.jsbridge.widget.view.WebHeaderView
+import me.yamlee.bridge.ui.model.ListIconTextModel
+import me.yamlee.bridge.ui.util.SnackBarUtils
+import me.yamlee.bridge.ui.dialog.BridgeDialogFactory
+import me.yamlee.bridge.ui.view.BridgeWebView
+import me.yamlee.bridge.ui.view.WebHeaderView
+import me.yamlee.bridge.util.InputTypeUtil
+import me.yamlee.bridge.util.ToastUtil
 import timber.log.Timber
 
 /**

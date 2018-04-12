@@ -4,8 +4,8 @@ import android.content.Intent;
 
 import java.util.List;
 
-import me.yamlee.jsbridge.model.ListIconTextModel;
-import me.yamlee.jsbridge.widget.view.WebHeaderView;
+import me.yamlee.bridge.ui.model.ListIconTextModel;
+import me.yamlee.bridge.ui.view.WebHeaderView;
 
 
 /**

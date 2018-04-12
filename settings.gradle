@@ -1,1 +1,1 @@
-include ':demo', ':android-jsBridge'
+include ':demo', ':android-jsBridge', ':android-bridgeUI', ':android-bridgeUtil'

@@ -1,6 +1,6 @@
 package me.yamlee.jsbridge.ui;
 
-import me.yamlee.jsbridge.model.ListIconTextModel;
+import me.yamlee.bridge.ui.model.ListIconTextModel;
 
 /**
  * 代理部分操作监听类

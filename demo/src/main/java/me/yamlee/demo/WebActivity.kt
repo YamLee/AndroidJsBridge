@@ -4,11 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.TextureView
 import me.yamlee.demo.bridge.CustomWebDelegate
 import me.yamlee.demo.jscall.LogTimeJscCallProcessor
 import me.yamlee.demo.jscall.SetHeaderRightProcessor
-import me.yamlee.jsbridge.model.ListIconTextModel
+import me.yamlee.bridge.ui.model.ListIconTextModel
 import me.yamlee.jsbridge.ui.DelegateListener
 
 /**
@@ -40,7 +39,7 @@ class WebActivity : BaseActivity() {
             override fun onClickHeaderRight(clickUri: String?) {
             }
 
-            override fun onClickMoreMenuItem(menuItem: ListIconTextModel?) {
+            override fun onClickMoreMenuItem(menuItem: me.yamlee.bridge.ui.model.ListIconTextModel?) {
             }
 
         })
