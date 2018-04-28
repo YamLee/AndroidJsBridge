@@ -7,8 +7,8 @@ import android.text.TextUtils
 import me.yamlee.demo.bridge.CustomWebDelegate
 import me.yamlee.demo.jscall.LogTimeJscCallProcessor
 import me.yamlee.demo.jscall.SetHeaderRightProcessor
-import me.yamlee.bridge.ui.model.ListIconTextModel
 import me.yamlee.jsbridge.ui.DelegateListener
+import me.yamlee.jsbridge.ui.WebHeader
 
 /**
  * WebView容器界面
@@ -27,6 +27,7 @@ class WebActivity : BaseActivity() {
     }
 
     private lateinit var delegate: CustomWebDelegate
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         delegate = CustomWebDelegate(this)
@@ -39,7 +40,7 @@ class WebActivity : BaseActivity() {
             override fun onClickHeaderRight(clickUri: String?) {
             }
 
-            override fun onClickMoreMenuItem(menuItem: me.yamlee.bridge.ui.model.ListIconTextModel?) {
+            override fun onClickMoreMenuItem(menuItem: WebHeader.ListIconTextModel?) {
             }
 
         })

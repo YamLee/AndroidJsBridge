@@ -1,17 +1,17 @@
 package me.yamlee.demo.bridge
 
 import android.app.Activity
-import me.yamlee.jsbridge.ui.BridgeActivityDelegate
+import android.view.View
+import me.yamlee.bridge.ui.DefaultWebDelegate
 
 /**
  *自定义JsBridge Web界面代理实现类
  *@author LiYan
  */
-class CustomWebDelegate(val activity: Activity) : BridgeActivityDelegate(activity),
+class CustomWebDelegate(activity: Activity) : DefaultWebDelegate(activity),
         CustomComponentProvider, CustomWebActionView, CustomInteraction {
+
     init {
-        webHeader.setBackBtnClickListener {
-            finishActivity()
-        }
+        webHeader.setBackBtnClickListener(View.OnClickListener { finishActivity() })
     }
 }

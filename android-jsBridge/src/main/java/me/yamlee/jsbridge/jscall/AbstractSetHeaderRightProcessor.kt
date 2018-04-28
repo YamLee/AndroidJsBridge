@@ -2,6 +2,7 @@ package me.yamlee.jsbridge.jscall
 
 import android.net.Uri
 import android.text.TextUtils
+import android.view.View
 import me.yamlee.jsbridge.*
 
 /**
@@ -27,9 +28,9 @@ abstract class AbstractSetHeaderRightProcessor(provider: NativeComponentProvider
 
             if (!TextUtils.isEmpty(request.rightBtn)) {
                 if (request.rightBtn.startsWith("http://")) {
-                    headerView.showRightBtn(Uri.parse(request.rightBtn), { onClickRightBtn(request.clickJumpUrl) })
+                    headerView.showRightBtn(Uri.parse(request.rightBtn), View.OnClickListener { onClickRightBtn(request.clickJumpUrl) })
                 } else {
-                    headerView.showRightBtn(request.rightBtn, { onClickRightBtn(request.clickJumpUrl) })
+                    headerView.showRightBtn(request.rightBtn, View.OnClickListener { onClickRightBtn(request.clickJumpUrl) })
                 }
             }
             return true

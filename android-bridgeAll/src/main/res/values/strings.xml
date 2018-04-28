@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">android-jsBridgeUI</string>
+
+
+    <!--分享-->
+    <string name="share_tv_wx_friend">微信好友</string>
+    <string name="share_tv_wx_moments">微信朋友圈</string>
+    <string name="text_share_sina_weibo">新浪微博</string>
+    <string name="share_tv_qq_friend">QQ好友</string>
+    <string name="share_tv_qq_zone">QQ空间</string>
+    <string name="share_tv_copy_link">复制链接</string>
+    <string name="share_tv_cancel">取消</string>
+    <string name="share_invalid">分享内容无效！</string>
+    <string name="my_order_record">我的购买记录</string>
+    <string name="copy_success">复制成功</string>
+    <string name="share_failed">分享失败，请重试！</string>
+    <string name="share_success">分享成功！</string>
+    <string name="share_cancel">取消分享！</string>
+    <string name="share_failed_title">分享失败，分享标题过长！</string>
+    <string name="share_failed_content">分享失败，分享内容过长！</string>
+    <string name="share_failed_photo">分享失败，分享图片过大！</string>
+    <string name="wx_login_success">微信登陆成功！</string>
+    <string name="wx_login_cancel">微信登录授权取消！</string>
+    <string name="wx_login_failed">登录授权失败，请重试！</string>
+    <string name="err_comm">一般错误!</string>
+    <string name="err_sent_failed">发送失败错误!</string>
+    <string name="err_unsupport">不支持错误!</string>
+</resources>

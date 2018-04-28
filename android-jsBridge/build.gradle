@@ -33,8 +33,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(':android-bridgeUI')
+//    api project(':android-bridgeUI')
 //    implementation project(':android-bridgeUtil')
+    api project(':android-bridgeUtil')
 
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'com.google.code.gson:gson:2.8.2'
@@ -43,9 +44,9 @@ dependencies {
 
     api "com.github.bumptech.glide:glide:3.8.0"
 
-    api "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
-    api "com.android.support:cardview-v7:${rootProject.supportLibVersion}"
-    api "com.android.support:design:${rootProject.supportLibVersion}"
+    compileOnly "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
+//    api "com.android.support:cardview-v7:${rootProject.supportLibVersion}"
+//    api "com.android.support:design:${rootProject.supportLibVersion}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

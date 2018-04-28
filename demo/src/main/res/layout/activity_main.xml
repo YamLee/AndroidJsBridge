@@ -10,7 +10,7 @@
         android:id="@+id/et_url_input"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/palette_gray_athens" />
+        android:background="@android:color/darker_gray" />
 
     <Button
         android:id="@+id/btnJumpWeb"

@@ -19,20 +19,20 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.yamlee.bridge.ui.R;
-import me.yamlee.bridge.ui.model.ListIconTextModel;
 import me.yamlee.bridge.util.ScreenUtil;
+import me.yamlee.jsbridge.ui.WebHeader;
 
 
 /**
- * 简单的PopWindow
- * <p>
- * Created by zczhang on 16/10/12.
+ * Simple PopWindow for list data
+ *
+ * @author yamlee
  */
 public class SimplePopWindow extends PopupWindow implements AdapterView.OnItemClickListener {
     ListView lvContent;
     ImageView ivArrow;
     private Context mContext;
-    private List<ListIconTextModel> simpleContentSet;
+    private List<WebHeader.ListIconTextModel> simpleContentSet;
     private BaseAdapter mListAdapter;
     private PopWindowItemClickListener mListener;
 
@@ -66,7 +66,7 @@ public class SimplePopWindow extends PopupWindow implements AdapterView.OnItemCl
     /**
      * 设置简单的列表内容
      */
-    public void setSimpleContent(List<ListIconTextModel> simpleContent) {
+    public void setSimpleContent(List<WebHeader.ListIconTextModel> simpleContent) {
         this.simpleContentSet = simpleContent;
         setListAdapter(new DefaultAdapter(mContext, simpleContent));
     }
@@ -98,11 +98,11 @@ public class SimplePopWindow extends PopupWindow implements AdapterView.OnItemCl
     }
 
     static class DefaultAdapter extends BaseAdapter {
-        private List<ListIconTextModel> content;
+        private List<WebHeader.ListIconTextModel> content;
         private Context context;
         private LayoutInflater inflater;
 
-        public DefaultAdapter(Context context, List<ListIconTextModel> defaultContent) {
+        public DefaultAdapter(Context context, List<WebHeader.ListIconTextModel> defaultContent) {
             this.context = context;
             this.content = defaultContent;
             inflater = LayoutInflater.from(context);
@@ -126,7 +126,7 @@ public class SimplePopWindow extends PopupWindow implements AdapterView.OnItemCl
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
-            ListIconTextModel item = content.get(position);
+            WebHeader.ListIconTextModel item = content.get(position);
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.popwindow_default_item, null);
                 holder = new ViewHolder(convertView);

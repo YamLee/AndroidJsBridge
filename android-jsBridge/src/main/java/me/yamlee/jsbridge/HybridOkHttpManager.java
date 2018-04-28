@@ -1,7 +1,6 @@
 package me.yamlee.jsbridge;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,7 +87,6 @@ public class HybridOkHttpManager {
         return builder;
     }
 
-    @NonNull
     private static RequestBody generatePostParam(HybridUpdateEntity entity) {
         return generatePostParam(entity.getJsonParams().toString());
     }

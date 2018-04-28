@@ -1,4 +1,4 @@
-package me.yamlee.bridge.ui.view;
+package me.yamlee.jsbridge.ui.internel;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

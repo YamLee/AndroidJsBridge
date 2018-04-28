@@ -2,6 +2,7 @@ package me.yamlee.jsbridge.jscall
 
 import android.net.Uri
 import android.text.TextUtils
+import android.view.View
 import me.yamlee.jsbridge.BaseJsCallProcessor
 import me.yamlee.jsbridge.JsCallData
 import me.yamlee.jsbridge.NativeComponentProvider
@@ -35,14 +36,12 @@ class SetHeaderMenuProcessor(provider: NativeComponentProvider) : BaseJsCallProc
                 headerView.setLayoutStyleMiddle()
             }
             if (!TextUtils.isEmpty(request.title)) {
-                headerView.title = request.title
+                headerView.setTitle(request.title)
             }
 
             if (!TextUtils.isEmpty(request.rightBtn)) {
                 if (request.rightBtn.startsWith("http://")) {
-                    headerView.showRightBtn(Uri.parse(request.rightBtn), {
-
-                    })
+                    headerView.showRightBtn(Uri.parse(request.rightBtn), View.OnClickListener {})
                 } else {
 
                 }

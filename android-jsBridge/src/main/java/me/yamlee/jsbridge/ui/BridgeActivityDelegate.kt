@@ -16,17 +16,13 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import me.yamlee.jsbridge.*
 
-import me.yamlee.bridge.ui.model.ListIconTextModel
-import me.yamlee.bridge.ui.util.SnackBarUtils
-import me.yamlee.bridge.ui.dialog.BridgeDialogFactory
-import me.yamlee.bridge.ui.view.BridgeWebView
-import me.yamlee.bridge.ui.view.WebHeaderView
 import me.yamlee.bridge.util.InputTypeUtil
 import me.yamlee.bridge.util.ToastUtil
+import me.yamlee.jsbridge.exceptions.JsBridgeException
+import me.yamlee.jsbridge.ui.internel.BridgeWebView
 import timber.log.Timber
 
 /**
@@ -48,29 +44,48 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
     val contentView: View
 
-    protected val webHeader: WebHeaderView
+    protected val headerContainer: FrameLayout
+
+    protected val webHeader: WebHeader
     protected val mWebContainer: FrameLayout
     protected val urlLoadingProgress: ProgressBar
     protected val webView: BridgeWebView
-    protected val defaultErrorView: View
-    protected val tvDefaultError: TextView?
     protected var loadingDialog: Dialog? = null
+    private val mDefaultErrorView: View? = null
 
     protected var mWebViewClient: WebViewClient? = null
     protected var mChromeClient: WebChromeClient? = null
 
+    private var mInflater: LayoutInflater = LayoutInflater.from(mActivity.applicationContext)
+
     init {
-        val inflater = LayoutInflater.from(mActivity.applicationContext)
-
-        defaultErrorView = inflater.inflate(R.layout.include_page_error, null)
-        tvDefaultError = defaultErrorView.findViewById(R.id.common_tv_error)
-
-        contentView = inflater.inflate(R.layout.fragment_near_web, null, false)
-        webHeader = contentView.findViewById(R.id.v_title)
+        contentView = mInflater.inflate(R.layout.layout_bridge_root, null, false)
         mWebContainer = contentView.findViewById(R.id.ll_web_container)
+        headerContainer = contentView.findViewById(R.id.fl_header_container)
+        webHeader = this.onCreateWebHeader(mInflater)
+        if (webHeader is View) {
+            headerContainer.addView(webHeader)
+        } else {
+            throw JsBridgeException("WebHeader must be a view")
+        }
         webView = contentView.findViewById(R.id.webView)
         setWebView()
         urlLoadingProgress = contentView.findViewById(R.id.pb_web_view)
+    }
+
+
+    /**
+     *
+     */
+    abstract fun onCreateWebHeader(inflater: LayoutInflater): WebHeader
+
+
+    /**
+     * Set custom error view, when webView loaded error or some unexpected exception
+     * happened ,this view will show
+     */
+    open fun onCreateErrorView(inflater: LayoutInflater): View? {
+        return null
     }
 
     /**
@@ -103,18 +118,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
     override fun showError(errorMessage: String) {
-        SnackBarUtils.showShortSnackBar(mActivity.window.decorView, errorMessage)
-    }
-
-    override fun showLoading(msg: String) {
-        if (loadingDialog != null && loadingDialog!!.isShowing) {
-            loadingDialog!!.dismiss()
-        }
-        loadingDialog = BridgeDialogFactory.getLoadingDialogBuilder()
-                .setMsg(msg)
-                .setTouchOutDismiss(false)
-                .build(mActivity)
-        loadingDialog!!.show()
+        showToast(errorMessage)
     }
 
     override fun showLoading() {
@@ -153,21 +157,24 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
     override fun setErrorPageVisible(isVisible: Boolean, errorText: String?) {
-        if (mWebContainer != null) {
+        val errorView = onCreateErrorView(mInflater)
+        if (errorView != null) {
             if (isVisible) {
-                if (!TextUtils.isEmpty(errorText) && tvDefaultError != null) {
-                    tvDefaultError.text = errorText
+                if (mWebContainer !== errorView.parent) {
+                    mWebContainer.addView(mDefaultErrorView)
                 }
-                if (mWebContainer !== defaultErrorView.parent) {
-                    mWebContainer.addView(defaultErrorView)
-                }
-                defaultErrorView.visibility = View.VISIBLE
-                defaultErrorView.setOnClickListener { mDelegateListener?.onClickErrorView() }
+                errorView.visibility = View.VISIBLE
+                errorView.setOnClickListener { mDelegateListener?.onClickErrorView() }
 
             } else {
-                mWebContainer.removeView(defaultErrorView)
+                mWebContainer.removeView(errorView)
+            }
+        } else {
+            errorText?.let {
+                showToast(it)
             }
         }
+
     }
 
     override fun setEmptyPageVisible(isVisible: Boolean) {
@@ -178,19 +185,12 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         setErrorPageVisible(isVisible, emptyText)
     }
 
-    override fun showAlert(title: String, content: String) {
-        BridgeDialogFactory.getSingleBtnDialogBuilder()
-                .setTitle(title)
-                .setMsg(content)
-                .build(mActivity).show()
-    }
-
     override fun showToast(msg: String) {
         ToastUtil.showShort(mAppContext, msg)
     }
 
     override fun onChangeHeader(title: String, color: Int, bgColor: Int) {
-        webHeader.title = title
+        webHeader.setTitle(title)
         if (color != 0) {
             webHeader.setTitleColor(color)
         }
@@ -200,15 +200,19 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
     override fun onChangeHeaderRightAsIcon(iconUrl: String, clickUri: String) {
-        webHeader.showRightBtn(Uri.parse(iconUrl)) { mDelegateListener?.onClickHeaderRight(clickUri) }
+        webHeader.showRightBtn(Uri.parse(iconUrl), View.OnClickListener { mDelegateListener?.onClickHeaderRight(clickUri) })
     }
 
     override fun onChangeHeaderRightAsTitle(title: String, clickUri: String) {
-        webHeader.showRightBtn(title, { mDelegateListener?.onClickHeaderRight(clickUri) })
+        webHeader.showRightBtn(title, View.OnClickListener { mDelegateListener?.onClickHeaderRight(clickUri) })
     }
 
-    override fun showHeaderMoreMenus(menus: List<ListIconTextModel>) {
-        webHeader.showMenus(menus, { mDelegateListener?.onClickMoreMenuItem(it) })
+    override fun showHeaderMoreMenus(menus: List<WebHeader.ListIconTextModel>) {
+        webHeader.showMenus(menus, object : WebHeader.MenuClickListener {
+            override fun onClickMenu(menuModel: WebHeader.ListIconTextModel) {
+                mDelegateListener?.onClickMoreMenuItem(menuModel)
+            }
+        })
     }
 
     override fun webViewGoBack() {
@@ -221,26 +225,31 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
     override fun showHeader(title: String) {
-        webHeader.visibility = View.VISIBLE
-        //初始化标题
-        if (!TextUtils.isEmpty(title)) {
-            webHeader.title = title
+        if (webHeader is View) {
+            webHeader.visibility = View.VISIBLE
+            //初始化标题
+            if (!TextUtils.isEmpty(title)) {
+                webHeader.setTitle(title)
+            }
         }
+
     }
 
     override fun hideHeader() {
-        webHeader.visibility = View.GONE
+        if (webHeader is View) {
+            webHeader.visibility = View.GONE
+        }
     }
 
     override fun renderTitle(title: String) {
-        webHeader.title = title
+        webHeader.setTitle(title)
     }
 
     override fun loadUrl(url: String) {
         webView.loadUrl(url)
     }
 
-    override fun getHeaderView(): WebHeaderView {
+    override fun getHeaderView(): WebHeader {
         return webHeader
     }
 
@@ -345,12 +354,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
     override fun onCreateWebViewClient(): WebViewClient {
         if (mWebViewClient == null) {
-            val wvBridgeHandler = object : WVJBWebViewClient.WVJBHandler {
-                override fun request(data: Any?, callback: WVJBWebViewClient.WVJBResponseCallback?) {
-
-                }
-
-            }
+            val wvBridgeHandler = WVJBWebViewClient.WVJBHandler { data, callback -> }
             mWebViewClient = DefaultWebViewClient(webView, wvBridgeHandler, this)
             (mWebViewClient as DefaultWebViewClient).enableLogging()
         }
@@ -372,7 +376,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
 
     open inner class DefaultWebViewClient(webView: WebView, wvjbHandler: WVJBWebViewClient.WVJBHandler,
-                                             componentProvider: NativeComponentProvider)
+                                          componentProvider: NativeComponentProvider)
         : QFHybridWebViewClient(webView, wvjbHandler, componentProvider) {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)

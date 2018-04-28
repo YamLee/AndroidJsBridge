@@ -4,9 +4,6 @@ import android.content.Intent;
 
 import java.util.List;
 
-import me.yamlee.bridge.ui.model.ListIconTextModel;
-import me.yamlee.bridge.ui.view.WebHeaderView;
-
 
 /**
  * 通用WebView界面展示
@@ -60,7 +57,7 @@ public interface WebActionView extends ActionView {
      *
      * @param menus 列表菜单信息
      */
-    void showHeaderMoreMenus(List<ListIconTextModel> menus);
+    void showHeaderMoreMenus(List<WebHeader.ListIconTextModel> menus);
 
     /**
      * WebView回到上一个访问过的界面
@@ -106,7 +103,7 @@ public interface WebActionView extends ActionView {
      *
      * @return
      */
-    WebHeaderView getHeaderView();
+    WebHeader getHeaderView();
 
 
     interface WebLogicListener extends Interaction {

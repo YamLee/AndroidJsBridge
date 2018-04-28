@@ -36,7 +36,7 @@ class SetHeaderProcessor(provider: NativeComponentProvider) : BaseJsCallProcesso
                 headerView.setLayoutStyleMiddle()
             }
             if (!TextUtils.isEmpty(request.title)) {
-                headerView.title = request.title
+                headerView.setTitle(request.title)
             }
             if (!TextUtils.isEmpty(request.titleColor)) {
                 headerView.setTitleColor(Color.parseColor(request.titleColor))

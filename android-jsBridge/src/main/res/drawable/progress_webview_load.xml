@@ -15,9 +15,9 @@
             <shape>
                 <corners android:radius="2dp" />
                 <gradient
-                    android:centerColor="@color/palette_orange"
-                    android:endColor="@color/palette_orange"
-                    android:startColor="@color/palette_orange" />
+                    android:centerColor="@android:color/holo_blue_bright"
+                    android:endColor="@android:color/holo_blue_bright"
+                    android:startColor="@android:color/holo_blue_bright" />
 
             </shape>
         </clip>
