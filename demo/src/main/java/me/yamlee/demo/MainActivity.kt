@@ -7,7 +7,7 @@ import android.text.TextUtils
 import android.widget.EditText
 import com.tbruyelle.rxpermissions.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
-import me.yamlee.bridge.util.ToastUtil
+import me.yamlee.jsbridge.utils.ToastUtil
 
 
 class MainActivity : BaseActivity() {
