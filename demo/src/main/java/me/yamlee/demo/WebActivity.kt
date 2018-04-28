@@ -37,10 +37,10 @@ class WebActivity : BaseActivity() {
 
             }
 
-            override fun onClickHeaderRight(clickUri: String?) {
+            override fun onClickHeaderRight(clickUri: String) {
             }
 
-            override fun onClickMoreMenuItem(menuItem: WebHeader.ListIconTextModel?) {
+            override fun onClickMoreMenuItem(menuItem: WebHeader.ListIconTextModel) {
             }
 
         })

@@ -98,7 +98,7 @@ public class SingleBtnConfirmDialog {
             Paint msgPaint = tvMsg.getPaint();
             if (msgPaint != null) {
                 float msgLength = msgPaint.measureText(String.valueOf(msg));
-                int tvMsgWidth = ScreenUtil.getScreenWidth(context) - ScreenUtil.dip2px(context, 40);
+                int tvMsgWidth = ScreenUtil.INSTANCE.getScreenWidth(context) - ScreenUtil.INSTANCE.dip2px(context, 40);
                 if (msgLength < tvMsgWidth) {
                     tvMsg.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
                 }

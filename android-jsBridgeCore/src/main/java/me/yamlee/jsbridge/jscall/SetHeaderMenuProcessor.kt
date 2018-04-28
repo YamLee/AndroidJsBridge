@@ -26,10 +26,10 @@ class SetHeaderMenuProcessor(provider: NativeComponentProvider) : BaseJsCallProc
         return FUNC_NAME
     }
 
-    override fun onHandleJsQuest(callData: JsCallData?): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData): Boolean {
         if (callData?.func == FUNC_NAME) {
-            val request = convertJsonToObject(callData.params, SetHeaderRequest::class.java)
-            val headerView = componentProvider.provideWebLogicView().headerView
+            val request = convertJsonToObject(callData.params!!, SetHeaderRequest::class.java)
+            val headerView = componentProvider.provideWebLogicView().getHeaderView()
             if (request.layout == LAYOUT_LEFT) {
                 headerView.setLayoutStyleLeft()
             } else if (request.layout == LAYOUT_MIDDLE) {

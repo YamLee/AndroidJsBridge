@@ -1,8 +1,6 @@
-package me.yamlee.jsbridge.ui;
+package me.yamlee.jsbridge.ui
 
-import android.content.Intent;
-
-import java.util.List;
+import android.content.Intent
 
 
 /**
@@ -10,22 +8,22 @@ import java.util.List;
  *
  * @author yamlee
  */
-public interface WebActionView extends ActionView {
+interface WebActionView : ActionView {
+
+    /**
+     * 获取头部Header view
+     *
+     * @return
+     */
+    fun getHeaderView(): WebHeader
+
     /**
      * 显示通用弹框
      *
      * @param title   弹框标题
      * @param content 弹框nmsg
      */
-    void showAlert(String title, String content);
-
-    /**
-     * 展示toast信息
-     *
-     * @param msg 展示的内容
-     */
-    void showToast(String msg);
-
+    fun showAlert(title: String, content: String)
 
     /**
      * 修改承载网页的Activity的头部信息
@@ -34,7 +32,7 @@ public interface WebActionView extends ActionView {
      * @param color   标题颜色
      * @param bgColor 头部的背景颜色
      */
-    void onChangeHeader(String title, int color, int bgColor);
+    fun onChangeHeader(title: String, color: Int, bgColor: Int)
 
     /**
      * 修改header右边按钮，设置为icon类型
@@ -42,7 +40,7 @@ public interface WebActionView extends ActionView {
      * @param iconUrl  icon的链接
      * @param clickUri 右边按钮的点击链接
      */
-    void onChangeHeaderRightAsIcon(String iconUrl, String clickUri);
+    fun onChangeHeaderRightAsIcon(iconUrl: String, clickUri: String)
 
     /**
      * 修改header右边按钮，设置为文字title类型
@@ -50,95 +48,88 @@ public interface WebActionView extends ActionView {
      * @param title    右边按钮文案
      * @param clickUri 右边按钮的点击链接
      */
-    void onChangeHeaderRightAsTitle(String title, String clickUri);
+    fun onChangeHeaderRightAsTitle(title: String, clickUri: String)
 
     /**
      * 设置头部右边更多按钮，点击显示菜单列表
      *
      * @param menus 列表菜单信息
      */
-    void showHeaderMoreMenus(List<WebHeader.ListIconTextModel> menus);
+    fun showHeaderMoreMenus(menus: List<WebHeader.ListIconTextModel>)
 
     /**
      * WebView回到上一个访问过的界面
      */
-    void webViewGoBack();
+    fun webViewGoBack()
 
     /**
      * 当WebView反回到上一个网页时，header返回键右边增加关闭的按钮
      */
-    void showClose();
+    fun showClose()
 
     /**
      * 显示web页头部
      */
-    void showHeader(String title);
+    fun showHeader(title: String)
 
     /**
      * 隐藏web页头部
      */
-    void hideHeader();
+    fun hideHeader()
 
     /**
      * 设置标题
      *
      * @param title 标题文案
      */
-    void renderTitle(String title);
+    fun renderTitle(title: String)
 
     /**
      * 根据指定的url加载网页
      */
-    void loadUrl(String url);
+    fun loadUrl(url: String)
 
     /**
      * 设置webView的加载进度
      *
      * @param newProgress 当前webView加载进度
      */
-    void renderWebViewLoadProgress(int newProgress);
-
-    /**
-     * 获取头部Header view
-     *
-     * @return
-     */
-    WebHeader getHeaderView();
+    fun renderWebViewLoadProgress(newProgress: Int)
 
 
-    interface WebLogicListener extends Interaction {
+    interface WebLogicListener : Interaction {
         /**
          * 跳转到二维码扫描界面
          *
          * @param requestCode activityResult请求码
          */
-        void gotoScanQrcodeActivityForResult(int requestCode);
+        fun gotoScanQrcodeActivityForResult(requestCode: Int)
 
         /**
          * 跳转到分享界面
          *
          * @param requestCode actvityResult请求码
          */
-        void gotoShareActivityForResult(int requestCode);
+        fun gotoShareActivityForResult(requestCode: Int)
 
-        void returnToMainActivity();
+        fun returnToMainActivity()
 
         /**
          * H5打开新的网页
          *
          * @param intent
          */
-        void openUriActivity(Intent intent);
+        fun openUriActivity(intent: Intent)
 
         /**
          * 清除掉先前打开的web也
          */
-        void clearTopWebActivity();
+        fun clearTopWebActivity()
 
         /**
          * 根据指定的url加载网页
          */
-        void loadUrl(String url);
+        fun loadUrl(url: String)
     }
 
 }

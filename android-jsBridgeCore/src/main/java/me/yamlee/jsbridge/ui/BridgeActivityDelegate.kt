@@ -153,10 +153,10 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
 
     override fun setErrorPageVisible(isVisible: Boolean) {
-        setErrorPageVisible(isVisible, null)
+        setErrorPageVisible(isVisible, "")
     }
 
-    override fun setErrorPageVisible(isVisible: Boolean, errorText: String?) {
+    override fun setErrorPageVisible(isVisible: Boolean, errorText: String) {
         val errorView = onCreateErrorView(mInflater)
         if (errorView != null) {
             if (isVisible) {
@@ -253,9 +253,9 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         return webHeader
     }
 
-    override fun startActivity(intent: Intent?, activityClass: Class<out Activity>?) {
+    override fun startActivity(intent: Intent, activityClass: Class<out Activity>) {
         try {
-            if (intent?.resolveActivity(mActivity.packageManager) != null) {
+            if (intent.resolveActivity(mActivity.packageManager) != null) {
                 intent.`package` = mActivity.packageName
                 mActivity.startActivity(intent)
             } else {
@@ -269,7 +269,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         }
     }
 
-    override fun startActivity(intent: Intent?) {
+    override fun startActivity(intent: Intent) {
         try {
             if (intent?.resolveActivity(mActivity.packageManager) != null) {
                 mActivity.startActivity(intent)
@@ -296,9 +296,9 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         }
     }
 
-    override fun startActivityForResult(intent: Intent?, requestCode: Int, activityClass: Class<out Activity>) {
+    override fun startActivityForResult(intent: Intent, requestCode: Int, activityClass: Class<out Activity>) {
         try {
-            intent?.setClass(mActivity, activityClass)
+            intent.setClass(mActivity, activityClass)
             mActivity.startActivityForResult(intent, requestCode)
         } catch (e: ActivityNotFoundException) {
             Timber.e(e)
@@ -354,7 +354,10 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
     override fun onCreateWebViewClient(): WebViewClient {
         if (mWebViewClient == null) {
-            val wvBridgeHandler = WVJBWebViewClient.WVJBHandler { data, callback -> }
+            val wvBridgeHandler = object : WVJBWebViewClient.WVJBHandler {
+                override fun request(data: Any?, callback: WVJBWebViewClient.WVJBResponseCallback?) {
+                }
+            }
             mWebViewClient = DefaultWebViewClient(webView, wvBridgeHandler, this)
             (mWebViewClient as DefaultWebViewClient).enableLogging()
         }
@@ -383,7 +386,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
             showProgress()
         }
 
-        override fun onPageFinished(view: WebView?, url: String?) {
+        override fun onPageFinished(view: WebView, url: String) {
             super.onPageFinished(view, url)
             hideProgress()
         }
@@ -391,7 +394,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
     open inner class DefaultChromeClient(context: Context) : BridgeWebChromeClient(context) {
-        override fun onProgressChanged(view: WebView?, newProgress: Int) {
+        override fun onProgressChanged(view: WebView, newProgress: Int) {
             super.onProgressChanged(view, newProgress)
             renderWebViewLoadProgress(newProgress)
         }

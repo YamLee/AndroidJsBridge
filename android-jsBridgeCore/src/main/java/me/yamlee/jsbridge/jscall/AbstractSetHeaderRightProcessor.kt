@@ -21,10 +21,10 @@ abstract class AbstractSetHeaderRightProcessor(provider: NativeComponentProvider
         return FUNC_NAME
     }
 
-    override fun onHandleJsQuest(callData: JsCallData?): Boolean {
-        if (callData?.func == FUNC_NAME) {
-            val request = convertJsonToObject(callData.params, SetHeaderRightRequest::class.java)
-            val headerView = componentProvider.provideWebLogicView().headerView
+    override fun onHandleJsQuest(callData: JsCallData): Boolean {
+        if (callData.func == FUNC_NAME) {
+            val request = convertJsonToObject(callData.params!!, SetHeaderRightRequest::class.java)
+            val headerView = componentProvider.provideWebLogicView().getHeaderView()
 
             if (!TextUtils.isEmpty(request.rightBtn)) {
                 if (request.rightBtn.startsWith("http://")) {

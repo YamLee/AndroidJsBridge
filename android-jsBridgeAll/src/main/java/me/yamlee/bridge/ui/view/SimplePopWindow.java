@@ -46,7 +46,7 @@ public class SimplePopWindow extends PopupWindow implements AdapterView.OnItemCl
         lvContent = (ListView) view.findViewById(R.id.lv_content);
         ivArrow = (ImageView) view.findViewById(R.id.iv_arrow);
         setContentView(view);
-        setWidth(ScreenUtil.dip2px(context, 150));
+        setWidth(ScreenUtil.INSTANCE.dip2px(context, 150));
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         setOutsideTouchable(true);
         setFocusable(true);
