@@ -16,7 +16,7 @@ open class DefaultWebDelegate(private val mActivity: Activity) : BridgeActivityD
 
 
     override fun showAlert(title: String, content: String) {
-        BridgeDialogFactory.getSingleBtnDialogBuilder()
+        BridgeDialogFactory.singleBtnDialogBuilder
                 .setTitle(title)
                 .setMsg(content)
                 .build(mActivity).show()
@@ -26,7 +26,7 @@ open class DefaultWebDelegate(private val mActivity: Activity) : BridgeActivityD
         if (loadingDialog != null && loadingDialog!!.isShowing) {
             loadingDialog!!.dismiss()
         }
-        loadingDialog = BridgeDialogFactory.getLoadingDialogBuilder()
+        loadingDialog = BridgeDialogFactory.loadingDialogBuilder
                 .setMsg(msg)
                 .setTouchOutDismiss(false)
                 .build(mActivity)

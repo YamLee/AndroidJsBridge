@@ -153,11 +153,13 @@ class WebHeaderView : FrameLayout, WebHeader {
             simplePopWindow = SimplePopWindow(context)
             simplePopWindow!!.setSimpleContent(menus)
             simplePopWindow!!.setArrowRightMargin(ScreenUtil.dip2px(context.applicationContext, 22f))
-            simplePopWindow!!.setListener { view, position, itemId ->
-                if (position < menus.size) {
-                    listener.onClickMenu(menus[position])
+            simplePopWindow!!.setListener(object : SimplePopWindow.PopWindowItemClickListener {
+                override fun onItemClick(view: View, position: Int, itemId: Long) {
+                    if (position < menus.size) {
+                        listener.onClickMenu(menus[position])
+                    }
                 }
-            }
+            })
         } else {
             ivMenu!!.visibility = View.GONE
         }
