@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import me.yamlee.demo.bridge.CustomWebDelegate
 import me.yamlee.demo.jscall.LogTimeJscCallProcessor
+import me.yamlee.demo.jscall.NumCountProcessor
 import me.yamlee.demo.jscall.SetHeaderRightProcessor
 import me.yamlee.jsbridge.ui.DelegateListener
 import me.yamlee.jsbridge.ui.WebHeader
@@ -57,5 +58,6 @@ class WebActivity : BaseActivity() {
     private fun addJsCallProcessor() {
         delegate.addJsCallProcessor(LogTimeJscCallProcessor(delegate))
         delegate.addJsCallProcessor(SetHeaderRightProcessor(delegate))
+        delegate.addJsCallProcessor(NumCountProcessor(delegate))
     }
 }

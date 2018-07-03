@@ -25,7 +25,7 @@ open class QFHybridWebViewClient(webView: WebView, jsCallHandler: JsCallHandler,
 
     init {
         registerCallProcessors(componentProvider)
-        registerHandler(BRIDGE_HANDLER_NAME,object:JsCallHandler{
+        registerHandler(BRIDGE_HANDLER_NAME, object : JsCallHandler {
             override fun request(data: Any?, callback: JsCallback?) {
                 val jsonObject = data as JSONObject
                 callback?.let {
@@ -75,10 +75,13 @@ open class QFHybridWebViewClient(webView: WebView, jsCallHandler: JsCallHandler,
                 String.format("%s Processor have not handled target js call", jsCallProcessor.getFuncName())
             Timber.i(msg)
         } else {
-            val defaultProcessor = jsCallProcessors!![DefaultProcessor.FUNC_NAME]
-            defaultProcessor?.process(callData, callback)
             msg = String.format("No JsCallProcessor can handle jsCall %s ", callData.func)
             Timber.e(msg)
+            val defaultProcessor = jsCallProcessors!!["default"]
+            if (defaultProcessor is DefaultProcessor) {
+                defaultProcessor.setMsg(msg)
+            }
+            defaultProcessor?.process(callData, callback)
         }
     }
 

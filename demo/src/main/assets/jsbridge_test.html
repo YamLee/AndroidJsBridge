@@ -214,6 +214,20 @@
 
     }
 
+    var num = 0
+
+    function test_num_count(){
+      JSBridge.call('numCount',
+       {
+           count: num+""
+       },
+       function(cb){
+        console.log("test_num_count ----->"+cb.ret + "  " + cb.result)
+        }
+      )
+      num++
+    }
+
 
     </script>
 </head>
@@ -257,6 +271,8 @@
     <button class=".margin" type="button" onclick="test_set_header_right2()">设置标题右边图片点击</button>
     <br>
     <button class=".margin" type="button" onclick="test_error()">错误点击</button>
+    <br>
+    <button class=".margin" type="button" onclick="test_num_count()">计数测试</button>
     <br>
 
 </div>
