@@ -1,6 +1,7 @@
-package me.yamlee.jsbridge
+package me.yamlee.jsbridge.processor.http
 
 import android.content.Context
+import me.yamlee.jsbridge.R
 
 import org.json.JSONException
 import org.json.JSONObject
@@ -9,13 +10,11 @@ import java.io.IOException
 import java.util.ArrayList
 
 import me.yamlee.jsbridge.entity.HybridUpdateEntity
-import me.yamlee.jsbridge.jscall.HttpRequestProcessor
 import me.yamlee.jsbridge.network.RequestHeader
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
-import okhttp3.Response
 import timber.log.Timber
 
 /**
@@ -23,7 +22,7 @@ import timber.log.Timber
  *
  * @author yamlee
  */
-object HybridOkHttpManager {
+object HttpManager {
     private val okHttpClient = OkHttpClient.Builder().build()
 
     @Throws(IOException::class)
@@ -143,9 +142,9 @@ object HybridOkHttpManager {
     private fun isPost(entity: HybridUpdateEntity): Boolean {
         //请求方式
         val action = entity.action
-        if (HybridUpdateValue.VALUE_ACTION_GET.equals(action, ignoreCase = true)) {
+        if (HttpConstValue.VALUE_ACTION_GET.equals(action, ignoreCase = true)) {
             return false
-        } else if (HybridUpdateValue.VALUE_ACTION_POST.equals(action, ignoreCase = true)) {
+        } else if (HttpConstValue.VALUE_ACTION_POST.equals(action, ignoreCase = true)) {
             return true
         }
         //默认是get

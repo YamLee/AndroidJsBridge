@@ -1,4 +1,4 @@
-package me.yamlee.jsbridge.jscall
+package me.yamlee.jsbridge.processor.http
 
 import android.content.Context
 import me.yamlee.jsbridge.*
@@ -29,11 +29,11 @@ class HttpRequestProcessor(componentProvider: NativeComponentProvider) : BaseJsC
     }
 
     private fun doRequest(context: Context,
-                          request: HttpRequestProcessor.HybridHttpRequest): Observable<String> {
+                          request: HybridHttpRequest): Observable<String> {
         return Observable.create { subscriber ->
             var data: String? = null
             try {
-                data = HybridOkHttpManager.doRequest(context, request)
+                data = HttpManager.doRequest(context, request)
             } catch (e: IOException) {
                 Timber.e(e)
             }

@@ -1,1 +1,1 @@
-include ':demo', ':android-jsBridgeCore', ':android-jsBridgeAll'
+include ':demo', ':android-jsBridgeCore', ':android-jsBridgeAll', ':android-jsBridgeProcessorHttp'
