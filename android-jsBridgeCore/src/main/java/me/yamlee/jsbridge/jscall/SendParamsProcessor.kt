@@ -1,12 +1,9 @@
 package me.yamlee.jsbridge.jscall
 
+import me.yamlee.jsbridge.*
 import org.json.JSONException
 import org.json.JSONObject
 
-import me.yamlee.jsbridge.BaseJsCallProcessor
-import me.yamlee.jsbridge.JsCallData
-import me.yamlee.jsbridge.NativeComponentProvider
-import me.yamlee.jsbridge.WVJBWebViewClient
 import timber.log.Timber
 
 /**
@@ -16,7 +13,7 @@ import timber.log.Timber
  */
 class SendParamsProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
 
-    override fun onHandleJsQuest(callData: JsCallData): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val params = callData.params
             try {
@@ -30,11 +27,6 @@ class SendParamsProcessor(componentProvider: NativeComponentProvider) : BaseJsCa
             return true
         }
         return false
-    }
-
-    override fun onResponse(callback: WVJBWebViewClient.WVJBResponseCallback): Boolean {
-        callback.callback("")
-        return true
     }
 
     override fun getFuncName(): String {

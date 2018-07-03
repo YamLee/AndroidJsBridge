@@ -354,8 +354,8 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
     override fun onCreateWebViewClient(): WebViewClient {
         if (mWebViewClient == null) {
-            val wvBridgeHandler = object : WVJBWebViewClient.WVJBHandler {
-                override fun request(data: Any?, callback: WVJBWebViewClient.WVJBResponseCallback?) {
+            val wvBridgeHandler = object : WVJBHandler {
+                override fun request(data: Any?, callback: WVJBResponseCallback?) {
                 }
             }
             mWebViewClient = DefaultWebViewClient(webView, wvBridgeHandler, this)
@@ -378,7 +378,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
 
-    open inner class DefaultWebViewClient(webView: WebView, wvjbHandler: WVJBWebViewClient.WVJBHandler,
+    open inner class DefaultWebViewClient(webView: WebView, wvjbHandler: WVJBHandler,
                                           componentProvider: NativeComponentProvider)
         : QFHybridWebViewClient(webView, wvjbHandler, componentProvider) {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {

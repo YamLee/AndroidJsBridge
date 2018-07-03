@@ -23,7 +23,7 @@ interface JsCallProcessor {
      * @param callData 参数
      * @return true表示已处理，请求不会传递给下一个处理器，反之则会传递给下一个处理器
      */
-    fun process(callData: JsCallData, callback: WVJBWebViewClient.WVJBResponseCallback): Boolean
+    fun process(callData: JsCallData, callback: WVJBResponseCallback): Boolean
 
     /**
      * 界面跳转后再回调的处理方法
@@ -33,5 +33,10 @@ interface JsCallProcessor {
      * @param data
      */
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent): Boolean
+
+    /**
+     * 生命周期销毁时回调，通常是在WebActivity的onDestroy中触发此回调
+     */
+    fun onDestroy()
 
 }

@@ -5,6 +5,7 @@ import android.text.TextUtils
 import me.yamlee.jsbridge.BaseJsCallProcessor
 import me.yamlee.jsbridge.JsCallData
 import me.yamlee.jsbridge.NativeComponentProvider
+import me.yamlee.jsbridge.WVJBResponseCallback
 
 /**
  * 设置Web界面头部UI
@@ -26,7 +27,7 @@ class SetHeaderProcessor(provider: NativeComponentProvider) : BaseJsCallProcesso
         return FUNC_NAME
     }
 
-    override fun onHandleJsQuest(callData: JsCallData): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
         if (callData.func == FUNC_NAME) {
             val request = convertJsonToObject(callData.params!!, SetHeaderRequest::class.java)
             val headerView = componentProvider.provideWebLogicView().getHeaderView()

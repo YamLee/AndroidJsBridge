@@ -13,14 +13,10 @@ abstract class BaseJsCallProcessor(protected var componentProvider: NativeCompon
     private val gson: Gson = Gson()
 
     override fun process(callData: JsCallData,
-                         callback: WVJBWebViewClient.WVJBResponseCallback): Boolean {
-        val handled = onHandleJsQuest(callData)
-        var onResponsed = false
-        if (handled) {
-            onResponsed = onResponse(callback)
-        }
+                         callback: WVJBResponseCallback): Boolean {
+        val handled = onHandleJsQuest(callData, callback)
         //如果子类处理这个请求但是没有做出回应，这里统一加上通用返回
-        if (!onResponsed && handled) {
+        if (!callback.handled && handled) {
             val response = BaseJsCallResponse()
             response.ret = "OK"
             callback.callback(response)
@@ -32,16 +28,12 @@ abstract class BaseJsCallProcessor(protected var componentProvider: NativeCompon
         onDestroy()
     }
 
-    open fun onHandleJsQuest(callData: JsCallData): Boolean {
+    open fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
         return false
     }
 
-    open fun onResponse(callback: WVJBWebViewClient.WVJBResponseCallback): Boolean {
-        return false
-    }
-
-    fun onDestroy() {
-
+    override fun onDestroy() {
+        //do nothing now
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent): Boolean {

@@ -1,14 +1,10 @@
 package me.yamlee.jsbridge.jscall
 
 import android.content.Context
+import me.yamlee.jsbridge.*
 
 import java.io.IOException
 
-import me.yamlee.jsbridge.BaseJsCallProcessor
-import me.yamlee.jsbridge.HybridOkHttpManager
-import me.yamlee.jsbridge.JsCallData
-import me.yamlee.jsbridge.NativeComponentProvider
-import me.yamlee.jsbridge.WVJBWebViewClient
 import rx.Observable
 import rx.Subscriber
 import timber.log.Timber
@@ -22,7 +18,7 @@ import timber.log.Timber
 class HttpRequestProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
     private var context: Context? = null
 
-    override fun onHandleJsQuest(callData: JsCallData): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val params = callData.params
             val request = convertJsonToObject(params!!, HybridHttpRequest::class.java)

@@ -15,13 +15,13 @@ abstract class AbstractSetHeaderRightProcessor(provider: NativeComponentProvider
         const val FUNC_NAME = "setHeaderRight"
     }
 
-    private var mCallback: WVJBWebViewClient.WVJBResponseCallback? = null
+    private var mCallback: WVJBResponseCallback? = null
 
     override fun getFuncName(): String {
         return FUNC_NAME
     }
 
-    override fun onHandleJsQuest(callData: JsCallData): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
         if (callData.func == FUNC_NAME) {
             val request = convertJsonToObject(callData.params!!, SetHeaderRightRequest::class.java)
             val headerView = componentProvider.provideWebLogicView().getHeaderView()

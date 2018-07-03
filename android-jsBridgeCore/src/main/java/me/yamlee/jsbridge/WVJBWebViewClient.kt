@@ -35,14 +35,6 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
     private var uniqueId: Long = 0
     private val myInterface = MyJavascriptInterface()
 
-    interface WVJBResponseCallback {
-        fun callback(data: Any?)
-    }
-
-    interface WVJBHandler {
-        fun request(data: Any?, callback: WVJBResponseCallback?)
-    }
-
     init {
         this.webView.settings.javaScriptEnabled = true
         //此处不应加版本判断
@@ -179,6 +171,8 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
                     if (message.callbackId != null) {
                         val callbackId = message.callbackId
                         responseCallback = object : WVJBResponseCallback {
+                            override var handled: Boolean = false
+
                             override fun callback(data: Any?) {
                                 val msg = WVJBMessage()
                                 msg.responseId = callbackId

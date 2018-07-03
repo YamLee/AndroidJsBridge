@@ -19,13 +19,13 @@ import timber.log.Timber
  *
  * @author yamlee
  */
-open class QFHybridWebViewClient(webView: WebView, wvjbHandler: WVJBWebViewClient.WVJBHandler,
+open class QFHybridWebViewClient(webView: WebView, wvjbHandler: WVJBHandler,
                                  componentProvider: NativeComponentProvider) : WVJBWebViewClient(webView, wvjbHandler) {
     private var jsCallProcessors: MutableMap<String, JsCallProcessor>? = null
 
     init {
         registerCallProcessors(componentProvider)
-        registerHandler(BRIDGE_HANDLER_NAME,object:WVJBWebViewClient.WVJBHandler{
+        registerHandler(BRIDGE_HANDLER_NAME,object:WVJBHandler{
             override fun request(data: Any?, callback: WVJBResponseCallback?) {
                 val jsonObject = data as JSONObject
                 callback?.let {
@@ -51,7 +51,7 @@ open class QFHybridWebViewClient(webView: WebView, wvjbHandler: WVJBWebViewClien
         jsCallProcessors!![callHandler.getFuncName()] = callHandler
     }
 
-    private fun handleData(jsonObject: JSONObject, callback: WVJBWebViewClient.WVJBResponseCallback) {
+    private fun handleData(jsonObject: JSONObject, callback: WVJBResponseCallback) {
         val jsCallData = JsCallData()
         try {
             jsCallData.func = jsonObject.optString("func")
@@ -63,7 +63,7 @@ open class QFHybridWebViewClient(webView: WebView, wvjbHandler: WVJBWebViewClien
         proceed(jsCallData, callback)
     }
 
-    fun proceed(callData: JsCallData, callback: WVJBWebViewClient.WVJBResponseCallback) {
+    fun proceed(callData: JsCallData, callback: WVJBResponseCallback) {
         if (jsCallProcessors == null) return
         val msg: String
         val jsCallProcessor = jsCallProcessors!![callData.func]
