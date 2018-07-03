@@ -13,7 +13,7 @@ import timber.log.Timber
  */
 class SendParamsProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val params = callData.params
             try {

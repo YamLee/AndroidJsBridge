@@ -6,7 +6,6 @@ import me.yamlee.jsbridge.*
 import java.io.IOException
 
 import rx.Observable
-import rx.Subscriber
 import timber.log.Timber
 
 /**
@@ -18,7 +17,7 @@ import timber.log.Timber
 class HttpRequestProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
     private var context: Context? = null
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val params = callData.params
             val request = convertJsonToObject(params!!, HybridHttpRequest::class.java)

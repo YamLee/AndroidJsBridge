@@ -1,6 +1,6 @@
 package me.yamlee.jsbridge
 
-interface WVJBResponseCallback {
+interface JsCallback {
     var handled: Boolean
 
     fun callback(data: Any?)

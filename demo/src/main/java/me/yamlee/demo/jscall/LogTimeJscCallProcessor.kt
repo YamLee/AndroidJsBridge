@@ -3,7 +3,7 @@ package me.yamlee.demo.jscall
 import me.yamlee.jsbridge.BaseJsCallProcessor
 import me.yamlee.jsbridge.JsCallData
 import me.yamlee.jsbridge.NativeComponentProvider
-import me.yamlee.jsbridge.WVJBResponseCallback
+import me.yamlee.jsbridge.JsCallback
 
 /**
  * 打印时间的Js接口处理器
@@ -20,7 +20,7 @@ class LogTimeJscCallProcessor(componentProvider: NativeComponentProvider)
         return FUNC_NAME
     }
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val alertRequest = convertJsonToObject(callData.params!!, LogTimeRequest::class.java)
             componentProvider.provideWebLogicView().showAlert("Js时间", alertRequest.time!!)

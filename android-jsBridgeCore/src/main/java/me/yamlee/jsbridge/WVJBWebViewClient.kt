@@ -27,11 +27,11 @@ import java.util.*
  * @param messageHandler 默认handler
  */
 @SuppressLint("SetJavaScriptEnabled", "NewApi")
-open class WVJBWebViewClient constructor(private val webView: WebView, private val messageHandler: WVJBHandler?) : WebViewClient() {
+open class WVJBWebViewClient constructor(private val webView: WebView, private val messageHandler: JsCallHandler?) : WebViewClient() {
     //native发送给h5的数据以队列形式存放
     private var startupMessageQueue: ArrayList<WVJBMessage>? = null
-    private var responseCallbacks: MutableMap<String, WVJBResponseCallback>? = null
-    private var messageHandlers: MutableMap<String, WVJBHandler>? = null
+    private var responseCallbacks: MutableMap<String, JsCallback>? = null
+    private var messageHandlers: MutableMap<String, JsCallHandler>? = null
     private var uniqueId: Long = 0
     private val myInterface = MyJavascriptInterface()
 
@@ -56,7 +56,7 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
      * @param handlerName 双方协议handler名称
      * @param handler     请求handler
      */
-    protected fun registerHandler(handlerName: String?, handler: WVJBHandler?) {
+    protected fun registerHandler(handlerName: String?, handler: JsCallHandler?) {
         if (handlerName == null || handlerName.length == 0 || handler == null)
             return
         messageHandlers!![handlerName] = handler
@@ -66,7 +66,7 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
     //        sendData(data, null, null);
     //    }
     //
-    //    public void send(Object data, WVJBResponseCallback responseCallback) {
+    //    public void send(Object data, JsCallback responseCallback) {
     //        sendData(data, responseCallback, null);
     //    }
     //
@@ -79,7 +79,7 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
     //    }
     //
     //    public void callHandler(String handlerName, Object data,
-    //                            WVJBResponseCallback responseCallback) {
+    //                            JsCallback responseCallback) {
     //        sendData(data, responseCallback, handlerName);
     //    }
     //
@@ -90,7 +90,7 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
     //     * @param responseCallback 响应h5结果
     //     * @param handlerName      双方协议的handlerName
     //     */
-    //    private void sendData(Object data, WVJBResponseCallback responseCallback,
+    //    private void sendData(Object data, JsCallback responseCallback,
     //                          String handlerName) {
     //        if (data == null && (handlerName == null || handlerName.length() == 0))
     //            return;
@@ -167,10 +167,10 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
                     val responseCallback = responseCallbacks!!.remove(message.responseId.toString())
                     responseCallback?.callback(message.responseData)
                 } else {
-                    var responseCallback: WVJBResponseCallback? = null
+                    var responseCallback: JsCallback? = null
                     if (message.callbackId != null) {
                         val callbackId = message.callbackId
-                        responseCallback = object : WVJBResponseCallback {
+                        responseCallback = object : JsCallback {
                             override var handled: Boolean = false
 
                             override fun callback(data: Any?) {
@@ -187,7 +187,7 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
                             }
                         }
                     }
-                    val handler: WVJBHandler?
+                    val handler: JsCallHandler?
                     if (message.handlerName != null) {
                         handler = messageHandlers!![message.handlerName!!]
                     } else {

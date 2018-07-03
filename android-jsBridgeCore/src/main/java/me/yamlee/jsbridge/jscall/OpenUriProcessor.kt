@@ -4,7 +4,7 @@ package me.yamlee.jsbridge.jscall
 import me.yamlee.jsbridge.BaseJsCallProcessor
 import me.yamlee.jsbridge.JsCallData
 import me.yamlee.jsbridge.NativeComponentProvider
-import me.yamlee.jsbridge.WVJBResponseCallback
+import me.yamlee.jsbridge.JsCallback
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -14,7 +14,7 @@ import org.json.JSONObject
  */
 class OpenUriProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             var jsonObject: JSONObject? = null
             try {

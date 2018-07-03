@@ -354,8 +354,8 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
 
     override fun onCreateWebViewClient(): WebViewClient {
         if (mWebViewClient == null) {
-            val wvBridgeHandler = object : WVJBHandler {
-                override fun request(data: Any?, callback: WVJBResponseCallback?) {
+            val wvBridgeHandler = object : JsCallHandler {
+                override fun request(data: Any?, callback: JsCallback?) {
                 }
             }
             mWebViewClient = DefaultWebViewClient(webView, wvBridgeHandler, this)
@@ -378,9 +378,9 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
 
-    open inner class DefaultWebViewClient(webView: WebView, wvjbHandler: WVJBHandler,
+    open inner class DefaultWebViewClient(webView: WebView, jsCallHandler: JsCallHandler,
                                           componentProvider: NativeComponentProvider)
-        : QFHybridWebViewClient(webView, wvjbHandler, componentProvider) {
+        : QFHybridWebViewClient(webView, jsCallHandler, componentProvider) {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
             showProgress()

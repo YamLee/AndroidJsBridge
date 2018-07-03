@@ -4,7 +4,7 @@ package me.yamlee.jsbridge.jscall
 import me.yamlee.jsbridge.BaseJsCallProcessor
 import me.yamlee.jsbridge.JsCallData
 import me.yamlee.jsbridge.NativeComponentProvider
-import me.yamlee.jsbridge.WVJBResponseCallback
+import me.yamlee.jsbridge.JsCallback
 import me.yamlee.jsbridge.ui.WebActionView
 
 /**
@@ -15,7 +15,7 @@ import me.yamlee.jsbridge.ui.WebActionView
 class AlertProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
     private val nearWebLogicView: WebActionView = componentProvider.provideWebLogicView()
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
+    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val alertRequest = convertJsonToObject(callData.params!!, AlertRequest::class.java)
             nearWebLogicView.showAlert(alertRequest.title!!, alertRequest.msg!!)

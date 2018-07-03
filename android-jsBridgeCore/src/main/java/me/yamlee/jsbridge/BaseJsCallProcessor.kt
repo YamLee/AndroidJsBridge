@@ -13,7 +13,7 @@ abstract class BaseJsCallProcessor(protected var componentProvider: NativeCompon
     private val gson: Gson = Gson()
 
     override fun process(callData: JsCallData,
-                         callback: WVJBResponseCallback): Boolean {
+                         callback: JsCallback): Boolean {
         val handled = onHandleJsQuest(callData, callback)
         //如果子类处理这个请求但是没有做出回应，这里统一加上通用返回
         if (!callback.handled && handled) {
@@ -28,7 +28,7 @@ abstract class BaseJsCallProcessor(protected var componentProvider: NativeCompon
         onDestroy()
     }
 
-    open fun onHandleJsQuest(callData: JsCallData, callback: WVJBResponseCallback): Boolean {
+    open fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
         return false
     }
 
