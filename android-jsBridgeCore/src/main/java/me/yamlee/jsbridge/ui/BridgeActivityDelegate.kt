@@ -372,14 +372,14 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
     }
 
     override fun addJsCallProcessor(processor: JsCallProcessor) {
-        val myWebViewClient: QFHybridWebViewClient = onCreateWebViewClient() as QFHybridWebViewClient
+        val myWebViewClient: BridgeWebViewClient = onCreateWebViewClient() as BridgeWebViewClient
         myWebViewClient.registerJsCallProcessor(processor)
     }
 
 
     open inner class DefaultWebViewClient(webView: WebView, jsCallHandler: JsCallHandler,
                                           componentProvider: NativeComponentProvider)
-        : QFHybridWebViewClient(webView, jsCallHandler, componentProvider) {
+        : BridgeWebViewClient(webView, jsCallHandler, componentProvider) {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
             showProgress()

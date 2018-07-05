@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.widget.EditText
 import com.tbruyelle.rxpermissions.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
+import me.yamlee.jsbridge.AndroidJsBridge
 import me.yamlee.jsbridge.utils.ToastUtil
 
 
@@ -16,6 +17,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        AndroidJsBridge
+                .setDebug(true)
         etInput = this.findViewById(R.id.et_url_input)
         RxPermissions(this)
                 .request(Manifest.permission.READ_PHONE_STATE)

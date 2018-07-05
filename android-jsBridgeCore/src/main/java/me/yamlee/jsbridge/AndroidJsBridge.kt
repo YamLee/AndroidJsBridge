@@ -17,7 +17,8 @@ object AndroidJsBridge {
      * if set debug true,JsBridge framework will log
      * some debug info
      */
-    fun setDebug(isDebug: Boolean) {
+    fun setDebug(isDebug: Boolean): AndroidJsBridge {
         mDebug = isDebug
+        return this
     }
 }

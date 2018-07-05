@@ -3,6 +3,7 @@ package me.yamlee.jsbridge
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Build
 import android.text.TextUtils
@@ -13,6 +14,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import com.google.gson.Gson
+import me.yamlee.jsbridge.jscall.*
+import me.yamlee.jsbridge.utils.LogUtil
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -27,13 +30,16 @@ import java.util.*
  * @param messageHandler 默认handler
  */
 @SuppressLint("SetJavaScriptEnabled", "NewApi")
-open class BridgeWebViewClient constructor(private val webView: WebView, private val messageHandler: JsCallHandler?) : WebViewClient() {
+open class BridgeWebViewClient constructor(private val webView: WebView,
+                                           private val messageHandler: JsCallHandler?,
+                                           private val componentProvider: NativeComponentProvider) : WebViewClient() {
     //native发送给h5的数据以队列形式存放
     private var startupMessageQueue: ArrayList<WVJBMessage>? = null
     private var responseCallbacks: MutableMap<String, JsCallback>? = null
     private var messageHandlers: MutableMap<String, JsCallHandler>? = null
     private var uniqueId: Long = 0
     private val myInterface = MyJavascriptInterface()
+    private var jsCallProcessors: MutableMap<String, JsCallProcessor>? = null
 
     init {
         this.webView.settings.javaScriptEnabled = true
@@ -44,7 +50,82 @@ open class BridgeWebViewClient constructor(private val webView: WebView, private
         this.responseCallbacks = HashMap()
         this.messageHandlers = HashMap()
         this.startupMessageQueue = ArrayList()
+        registerCallProcessors(componentProvider)
+        registerHandler(BRIDGE_HANDLER_NAME, object : JsCallHandler {
+            override fun request(data: Any?, callback: JsCallback?) {
+                val jsonObject = data as JSONObject
+                callback?.let {
+                    handleData(jsonObject, callback)
+                }
+            }
+        })
     }
+
+    private fun registerCallProcessors(componentProvider: NativeComponentProvider) {
+        registerJsCallProcessor(DefaultProcessor(componentProvider))
+        registerJsCallProcessor(AlertProcessor(componentProvider))
+        registerJsCallProcessor(CloseProcessor(componentProvider))
+        registerJsCallProcessor(ToastProcessor(componentProvider))
+        registerJsCallProcessor(SetHeaderProcessor(componentProvider))
+    }
+
+
+    fun registerJsCallProcessor(callHandler: JsCallProcessor) {
+        if (jsCallProcessors == null) {
+            jsCallProcessors = HashMap()
+        }
+        jsCallProcessors!![callHandler.getFuncName()] = callHandler
+    }
+
+    private fun handleData(jsonObject: JSONObject, callback: JsCallback) {
+        val jsCallData = JsCallData()
+        try {
+            jsCallData.func = jsonObject.optString("func")
+            jsCallData.params = jsonObject.optJSONObject("params").toString()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        proceed(jsCallData, callback)
+    }
+
+    fun proceed(callData: JsCallData, callback: JsCallback) {
+        if (jsCallProcessors == null) return
+        val msg: String
+        val jsCallProcessor = jsCallProcessors!![callData.func]
+        if (jsCallProcessor != null) {
+            val handled = jsCallProcessor.process(callData, callback)
+            msg = if (handled)
+                String.format("%s Processor handled js call", jsCallProcessor.getFuncName())
+            else
+                String.format("%s Processor have not handled target js call", jsCallProcessor.getFuncName())
+            LogUtil.info(msg)
+        } else {
+            msg = String.format("No JsCallProcessor can handle jsCall %s ", callData.func)
+            LogUtil.error(msg)
+            val defaultProcessor = jsCallProcessors!!["default"]
+            if (defaultProcessor is DefaultProcessor) {
+                defaultProcessor.setMsg(msg)
+            }
+            defaultProcessor?.process(callData, callback)
+        }
+    }
+
+    fun handleActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (jsCallProcessors == null) return
+        for (processor in jsCallProcessors!!.values) {
+            val handled = processor.onActivityResult(requestCode, resultCode, data)
+
+            if (handled) {
+                val msg = String.format("Processor %s handled ActivityResult",
+                        processor.getFuncName())
+                LogUtil.info(msg)
+                return
+            }
+
+        }
+    }
+
 
     fun enableLogging() {
         logging = true
@@ -340,5 +421,6 @@ open class BridgeWebViewClient constructor(private val webView: WebView, private
         private val kCustomProtocolScheme = "wvjbscheme"
         private val kQueueHasMessage = "__WVJB_QUEUE_MESSAGE__"
         private var logging = false
+        val BRIDGE_HANDLER_NAME = "JsBridgeCall"
     }
 }
