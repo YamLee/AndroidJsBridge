@@ -8,13 +8,11 @@ import android.support.annotation.RequiresApi
 import android.support.v4.widget.SwipeRefreshLayout
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.view.ViewParent
 import android.webkit.CookieManager
 import android.webkit.CookieSyncManager
 import android.webkit.WebSettings
 import android.webkit.WebView
-
-import timber.log.Timber
+import me.yamlee.jsbridge.utils.LogUtil
 
 /**
  * The common base WebView for bridge bridge framework user to extend
@@ -80,7 +78,7 @@ class BridgeWebView : WebView {
         //        settings.setUserAgentString(settings.getUserAgentString() + ";QMMWD" +
         //                appVersion + deviceName + osVersion);
 
-        Timber.i("user-agent====" + settings.userAgentString)
+        LogUtil.info("user-agent====" + settings.userAgentString)
         settings.javaScriptEnabled = true
         settings.cacheMode = WebSettings.LOAD_NO_CACHE
         settings.javaScriptCanOpenWindowsAutomatically = true
@@ -104,7 +102,7 @@ class BridgeWebView : WebView {
     }
 
     fun setCookie(domain: String, values: List<String>) {
-        Timber.i("start set cookie...")
+        LogUtil.info("start set cookie...")
         CookieSyncManager.createInstance(context)
         val cookieManager = CookieManager.getInstance()
         CookieSyncManager.getInstance().startSync()
@@ -143,7 +141,7 @@ class BridgeWebView : WebView {
             cookieManager.setCookie(domain, value)
         }
         CookieSyncManager.getInstance().sync()
-        Timber.i("seted cookie---" + cookieManager.getCookie(domain))
+        LogUtil.info("seted cookie---" + cookieManager.getCookie(domain))
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {

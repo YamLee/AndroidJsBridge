@@ -9,9 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-
 import me.yamlee.bridge.ui.R
-import timber.log.Timber
+import me.yamlee.jsbridge.utils.LogUtil
 
 /**
  * 简单的带编辑提示框,基本样式为:标题,输入框,确认按钮
@@ -41,7 +40,7 @@ class SimpleEditDialog : Dialog {
             }
         } catch (e: IndexOutOfBoundsException) {
             //如果设置的edit最大长度setSelection可能会包indexOutOfBound异常
-            Timber.e(e)
+            LogUtil.error(e)
         }
 
     }

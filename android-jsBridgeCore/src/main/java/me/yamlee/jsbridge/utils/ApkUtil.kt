@@ -1,21 +1,13 @@
 package me.yamlee.jsbridge.utils
 
 import android.app.ActivityManager
-import android.content.ComponentName
 import android.content.Context
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.Bundle
 import android.text.TextUtils
-
 import java.io.IOException
-import java.util.Enumeration
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
-
-import timber.log.Timber
 
 /**
  * 此工具类包含获取apk版本号和build号以及渠道号
@@ -63,7 +55,7 @@ object ApkUtil {
                 }
             }
         } catch (e: IOException) {
-            Timber.e(e)
+            LogUtil.error(e)
         } finally {
             if (zipfile != null) {
                 try {
@@ -153,7 +145,7 @@ object ApkUtil {
     fun isAppStarted(context: Context?): Boolean {
         var isRunning = false
         if (context == null) {
-            Timber.e("context is %s, please conform.", context)
+            LogUtil.error("context is null, please conform.")
             return isRunning
         }
         val pkgName = context.packageName

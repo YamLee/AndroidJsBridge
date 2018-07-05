@@ -2,17 +2,10 @@ package me.yamlee.jsbridge
 
 import android.content.Intent
 import android.webkit.WebView
-
+import me.yamlee.jsbridge.jscall.*
+import me.yamlee.jsbridge.utils.LogUtil
 import org.json.JSONObject
-
-import java.util.HashMap
-
-import me.yamlee.jsbridge.jscall.AlertProcessor
-import me.yamlee.jsbridge.jscall.CloseProcessor
-import me.yamlee.jsbridge.jscall.DefaultProcessor
-import me.yamlee.jsbridge.jscall.SetHeaderProcessor
-import me.yamlee.jsbridge.jscall.ToastProcessor
-import timber.log.Timber
+import java.util.*
 
 /**
  * 包含JsBridge功能的WebViewClient
@@ -20,7 +13,7 @@ import timber.log.Timber
  * @author yamlee
  */
 open class QFHybridWebViewClient(webView: WebView, jsCallHandler: JsCallHandler,
-                                 componentProvider: NativeComponentProvider) : WVJBWebViewClient(webView, jsCallHandler) {
+                                 componentProvider: NativeComponentProvider) : BridgeWebViewClient(webView, jsCallHandler) {
     private var jsCallProcessors: MutableMap<String, JsCallProcessor>? = null
 
     init {
@@ -73,10 +66,10 @@ open class QFHybridWebViewClient(webView: WebView, jsCallHandler: JsCallHandler,
                 String.format("%s Processor handled js call", jsCallProcessor.getFuncName())
             else
                 String.format("%s Processor have not handled target js call", jsCallProcessor.getFuncName())
-            Timber.i(msg)
+            LogUtil.info(msg)
         } else {
             msg = String.format("No JsCallProcessor can handle jsCall %s ", callData.func)
-            Timber.e(msg)
+            LogUtil.error(msg)
             val defaultProcessor = jsCallProcessors!!["default"]
             if (defaultProcessor is DefaultProcessor) {
                 defaultProcessor.setMsg(msg)
@@ -93,7 +86,7 @@ open class QFHybridWebViewClient(webView: WebView, jsCallHandler: JsCallHandler,
             if (handled) {
                 val msg = String.format("Processor %s handled ActivityResult",
                         processor.getFuncName())
-                Timber.i(msg)
+                LogUtil.info(msg)
                 return
             }
 

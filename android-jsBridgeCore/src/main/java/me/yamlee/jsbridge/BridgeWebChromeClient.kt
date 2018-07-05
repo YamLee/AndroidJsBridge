@@ -1,15 +1,8 @@
 package me.yamlee.jsbridge
 
 import android.content.Context
-import android.util.Log
-import android.webkit.ConsoleMessage
-import android.webkit.GeolocationPermissions
-import android.webkit.JsResult
-import android.webkit.ValueCallback
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-
-import timber.log.Timber
+import android.webkit.*
+import me.yamlee.jsbridge.utils.LogUtil
 
 /**
  * Add some additional operation for WebChromeClient
@@ -21,9 +14,8 @@ open class BridgeWebChromeClient(private val mContext: Context) : WebChromeClien
     private var mResult: JsResult? = null
 
     override fun onConsoleMessage(cm: ConsoleMessage): Boolean {
-        Log.i("--Js Console.log:--", cm.message() + " -- From line "
-                + cm.lineNumber() + " of "
-                + cm.sourceId())
+        LogUtil.info("--Js Console.log:--${cm.message()} " +
+                "-- From line ${cm.lineNumber()} of ${cm.sourceId()}")
         return true
     }
 
@@ -43,7 +35,7 @@ open class BridgeWebChromeClient(private val mContext: Context) : WebChromeClien
 
     override fun onProgressChanged(view: WebView, newProgress: Int) {
         super.onProgressChanged(view, newProgress)
-        Timber.v("web load progress$newProgress")
+        LogUtil.info("web load progress$newProgress")
     }
 
     //配置H5请求地理位置权限

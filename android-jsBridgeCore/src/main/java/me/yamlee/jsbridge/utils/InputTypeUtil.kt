@@ -7,8 +7,6 @@ import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 
-import timber.log.Timber
-
 /**
  * 输入法工具类,如:打开关闭软键盘,复制,粘帖文字等
  *
@@ -51,7 +49,7 @@ object InputTypeUtil {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (view != null) {
 
-            Timber.i("-----打开软键盘------")
+            LogUtil.info("-----open soft key board------")
             imm.showSoftInput(view, InputMethodManager.SHOW_FORCED)
         }
     }

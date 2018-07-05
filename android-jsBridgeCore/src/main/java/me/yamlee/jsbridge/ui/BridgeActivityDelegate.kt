@@ -18,12 +18,11 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import me.yamlee.jsbridge.*
-
-import me.yamlee.jsbridge.utils.InputTypeUtil
-import me.yamlee.jsbridge.utils.ToastUtil
 import me.yamlee.jsbridge.exceptions.JsBridgeException
 import me.yamlee.jsbridge.ui.internel.BridgeWebView
-import timber.log.Timber
+import me.yamlee.jsbridge.utils.InputTypeUtil
+import me.yamlee.jsbridge.utils.LogUtil
+import me.yamlee.jsbridge.utils.ToastUtil
 
 /**
  * Js Bridge父类Activity代理类，用来解决不想继承BridgeWebActivity的情况
@@ -263,7 +262,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
                         R.string.have_some_problem_please_contacts_user_service, Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
-            Timber.e(e)
+            LogUtil.error(e)
             Toast.makeText(mAppContext,
                     R.string.have_some_problem_please_contacts_user_service, Toast.LENGTH_SHORT).show()
         }
@@ -278,7 +277,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
                         R.string.have_some_problem_please_contacts_user_service, Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
-            Timber.e(e)
+            LogUtil.error(e)
             Toast.makeText(mAppContext,
                     R.string.have_some_problem_please_contacts_user_service, Toast.LENGTH_SHORT).show()
         }
@@ -292,7 +291,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
         try {
             mActivity.startActivityForResult(intent, requestCode)
         } catch (e: ActivityNotFoundException) {
-            Timber.e(e)
+            LogUtil.error(e)
         }
     }
 
@@ -301,7 +300,7 @@ abstract class BridgeActivityDelegate(private val mActivity: Activity) : NativeC
             intent.setClass(mActivity, activityClass)
             mActivity.startActivityForResult(intent, requestCode)
         } catch (e: ActivityNotFoundException) {
-            Timber.e(e)
+            LogUtil.error(e)
         }
     }
 

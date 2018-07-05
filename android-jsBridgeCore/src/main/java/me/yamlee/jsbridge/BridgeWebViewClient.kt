@@ -27,7 +27,7 @@ import java.util.*
  * @param messageHandler 默认handler
  */
 @SuppressLint("SetJavaScriptEnabled", "NewApi")
-open class WVJBWebViewClient constructor(private val webView: WebView, private val messageHandler: JsCallHandler?) : WebViewClient() {
+open class BridgeWebViewClient constructor(private val webView: WebView, private val messageHandler: JsCallHandler?) : WebViewClient() {
     //native发送给h5的数据以队列形式存放
     private var startupMessageQueue: ArrayList<WVJBMessage>? = null
     private var responseCallbacks: MutableMap<String, JsCallback>? = null
@@ -61,53 +61,6 @@ open class WVJBWebViewClient constructor(private val webView: WebView, private v
             return
         messageHandlers!![handlerName] = handler
     }
-    //
-    //    public void send(Object data) {
-    //        sendData(data, null, null);
-    //    }
-    //
-    //    public void send(Object data, JsCallback responseCallback) {
-    //        sendData(data, responseCallback, null);
-    //    }
-    //
-    //    public void callHandler(String handlerName) {
-    //        callHandler(handlerName, null, null);
-    //    }
-    //
-    //    public void callHandler(String handlerName, Object data) {
-    //        callHandler(handlerName, data, null);
-    //    }
-    //
-    //    public void callHandler(String handlerName, Object data,
-    //                            JsCallback responseCallback) {
-    //        sendData(data, responseCallback, handlerName);
-    //    }
-    //
-    //    /**
-    //     * native主动发送数据给H5
-    //     *
-    //     * @param data             发送的数据
-    //     * @param responseCallback 响应h5结果
-    //     * @param handlerName      双方协议的handlerName
-    //     */
-    //    private void sendData(Object data, JsCallback responseCallback,
-    //                          String handlerName) {
-    //        if (data == null && (handlerName == null || handlerName.length() == 0))
-    //            return;
-    //        WVJBMessage message = new WVJBMessage();
-    //        if (data != null) {
-    //            message.data = data;
-    //        }
-    //        if (responseCallback != null) {
-    //            String callbackId = "objc_cb_" + (++uniqueId);
-    //            responseCallbacks.put(callbackId, responseCallback);
-    //            message.callbackId = callbackId;
-    //        }
-    //        if (handlerName != null) {
-    //            message.handlerName = handlerName;
-    //        }
-    //        queueMessage(message);
-    //    }
 
     /**
      * onPageFinished前发送，页面初始化未完成前发送数据，以队列形式存储到startupMessageQueue待onPageFinished统一dispatch

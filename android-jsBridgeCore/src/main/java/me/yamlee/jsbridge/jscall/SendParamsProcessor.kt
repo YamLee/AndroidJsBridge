@@ -1,10 +1,12 @@
 package me.yamlee.jsbridge.jscall
 
-import me.yamlee.jsbridge.*
+import me.yamlee.jsbridge.BaseJsCallProcessor
+import me.yamlee.jsbridge.JsCallData
+import me.yamlee.jsbridge.JsCallback
+import me.yamlee.jsbridge.NativeComponentProvider
+import me.yamlee.jsbridge.utils.LogUtil
 import org.json.JSONException
 import org.json.JSONObject
-
-import timber.log.Timber
 
 /**
  * Js获取原生传过来的参数
@@ -19,7 +21,7 @@ class SendParamsProcessor(componentProvider: NativeComponentProvider) : BaseJsCa
             try {
                 val jsonObject = JSONObject(params)
                 val module = jsonObject.optString("module")
-                Timber.i("module is$module")
+                LogUtil.info("module is$module")
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
