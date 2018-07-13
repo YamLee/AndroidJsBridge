@@ -17,7 +17,7 @@ class DefaultProcessor(val provider: NativeComponentProvider) : BaseJsCallProces
         this.msg = msg
     }
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
+    override fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean {
         val response = BaseJsCallResponse()
         response.ret = ResponseCode.UNSUPPORTED
         response.msg = this.msg

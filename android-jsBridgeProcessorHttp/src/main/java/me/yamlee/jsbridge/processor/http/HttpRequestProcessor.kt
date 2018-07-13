@@ -17,7 +17,7 @@ import timber.log.Timber
 class HttpRequestProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
     private var context: Context? = null
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
+    override fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val params = callData.params
             val request = convertJsonToObject(params!!, HybridHttpRequest::class.java)

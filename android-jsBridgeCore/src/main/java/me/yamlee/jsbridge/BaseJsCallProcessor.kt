@@ -14,7 +14,7 @@ abstract class BaseJsCallProcessor(protected var componentProvider: NativeCompon
 
     override fun process(callData: JsCallData,
                          callback: JsCallback): Boolean {
-        val handled = onHandleJsQuest(callData, callback)
+        val handled = onHandleJsRequest(callData, callback)
         //如果子类处理这个请求但是没有做出回应，这里统一加上通用返回
         if (!onHandleJsResponse()) {
             val response = BaseJsCallResponse()
@@ -28,7 +28,7 @@ abstract class BaseJsCallProcessor(protected var componentProvider: NativeCompon
         onDestroy()
     }
 
-    abstract fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean
+    abstract fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean
 
     open fun onHandleJsResponse(): Boolean {
         return false

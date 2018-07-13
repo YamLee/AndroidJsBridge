@@ -17,7 +17,7 @@ import me.yamlee.jsbridge.ui.WebActionView
 class ToastProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
     private var view: WebActionView? = null
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
+    override fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             view = componentProvider.provideWebLogicView()
             var jsonObject: JSONObject? = null

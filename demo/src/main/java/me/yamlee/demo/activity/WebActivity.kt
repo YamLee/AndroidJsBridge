@@ -1,12 +1,14 @@
-package me.yamlee.demo
+package me.yamlee.demo.activity
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import me.yamlee.demo.BaseActivity
 import me.yamlee.demo.bridge.CustomWebDelegate
 import me.yamlee.demo.jscall.LogTimeJscCallProcessor
 import me.yamlee.demo.jscall.NumCountProcessor
+import me.yamlee.demo.jscall.SayHelloProcessor
 import me.yamlee.demo.jscall.SetHeaderRightProcessor
 import me.yamlee.jsbridge.ui.DelegateListener
 import me.yamlee.jsbridge.ui.WebHeader
@@ -33,18 +35,6 @@ class WebActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         delegate = CustomWebDelegate(this)
         setContentView(delegate.contentView)
-        delegate.setDelegateListener(object : DelegateListener {
-            override fun onClickErrorView() {
-
-            }
-
-            override fun onClickHeaderRight(clickUri: String) {
-            }
-
-            override fun onClickMoreMenuItem(menuItem: WebHeader.ListIconTextModel) {
-            }
-
-        })
         addJsCallProcessor()
         val url = intent?.getStringExtra(ARG_URL)
         if (!TextUtils.isEmpty(url)) {
@@ -52,12 +42,13 @@ class WebActivity : BaseActivity() {
         } else {
             delegate.loadUrl("file:///android_asset/jsbridge_test.html")
         }
-//        loadUrl("http://www.baidu.com")
     }
 
     private fun addJsCallProcessor() {
+        delegate.addJsCallProcessor(SayHelloProcessor(delegate))
         delegate.addJsCallProcessor(LogTimeJscCallProcessor(delegate))
         delegate.addJsCallProcessor(SetHeaderRightProcessor(delegate))
         delegate.addJsCallProcessor(NumCountProcessor(delegate))
     }
+
 }

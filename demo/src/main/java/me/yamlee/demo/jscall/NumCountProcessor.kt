@@ -12,7 +12,7 @@ class NumCountProcessor(provider: CustomComponentProvider) : BaseJsCallProcessor
         return "numCount"
     }
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
+    override fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean {
         val request = convertJsonToObject(callData.params ?: "", NumCountReq::class.java)
         val response = NumCountResponse()
         response.result = request.count

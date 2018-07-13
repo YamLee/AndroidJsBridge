@@ -1,6 +1,6 @@
 package me.yamlee.demo.jscall
 
-import me.yamlee.demo.WebActivity
+import me.yamlee.demo.activity.WebActivity
 import me.yamlee.demo.bridge.CustomComponentProvider
 import me.yamlee.jsbridge.jscall.AbstractSetHeaderRightProcessor
 

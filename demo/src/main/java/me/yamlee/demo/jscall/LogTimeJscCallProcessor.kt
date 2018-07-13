@@ -20,7 +20,7 @@ class LogTimeJscCallProcessor(componentProvider: NativeComponentProvider)
         return FUNC_NAME
     }
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
+    override fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val alertRequest = convertJsonToObject(callData.params!!, LogTimeRequest::class.java)
             componentProvider.provideWebLogicView().showAlert("Js时间", alertRequest.time!!)
@@ -31,10 +31,7 @@ class LogTimeJscCallProcessor(componentProvider: NativeComponentProvider)
 
 
     internal class LogTimeRequest {
-        /**
-         * title : title
-         * msg : 测试弹出消息
-         */
+
         var time: String? = null
     }
 

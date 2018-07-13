@@ -18,7 +18,7 @@ import me.yamlee.jsbridge.ui.WebActionView
 class CloseProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
     private var nearInteraction: WebActionView.WebLogicListener = componentProvider.provideWebInteraction()
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
+    override fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             try {
                 val jsonObject = JSONObject(callData.params)

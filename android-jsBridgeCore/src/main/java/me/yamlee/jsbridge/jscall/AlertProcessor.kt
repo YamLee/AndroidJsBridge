@@ -15,7 +15,7 @@ import me.yamlee.jsbridge.ui.WebActionView
 class AlertProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
     private val nearWebLogicView: WebActionView = componentProvider.provideWebLogicView()
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
+    override fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             val alertRequest = convertJsonToObject(callData.params!!, AlertRequest::class.java)
             nearWebLogicView.showAlert(alertRequest.title!!, alertRequest.msg!!)

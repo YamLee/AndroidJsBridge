@@ -14,7 +14,7 @@ import org.json.JSONObject
  */
 class OpenUriProcessor(componentProvider: NativeComponentProvider) : BaseJsCallProcessor(componentProvider) {
 
-    override fun onHandleJsQuest(callData: JsCallData, callback: JsCallback): Boolean {
+    override fun onHandleJsRequest(callData: JsCallData, callback: JsCallback): Boolean {
         if (FUNC_NAME == callData.func) {
             var jsonObject: JSONObject? = null
             try {
