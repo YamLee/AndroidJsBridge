@@ -2,20 +2,21 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 def artifact = new Properties()
-artifact.load(new FileInputStream("deploy.settings"))
+artifact.load(new FileInputStream("${rootDir}/deploy.settings"))
 
 version=artifact.version
 group=artifact.groupId
+
 
 install {
     repositories.mavenInstaller {
         pom.project {
             packaging 'aar'
             groupId artifact.groupId
-            artifactId artifact.id
+            artifactId POM_ARTIFACT_ID
 
             version artifact.version
-            name artifact.name // pom.project.name must be same as bintray.pkg.name
+            name POM_NAME // pom.project.name must be same as bintray.pkg.name
             url artifact.siteUrl
 
             licenses {
@@ -53,7 +54,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = artifact.id
+        name = POM_NAME
         desc = artifact.libraryDescription
         websiteUrl = artifact.siteUrl
         vcsUrl = artifact.gitUrl
@@ -107,3 +108,6 @@ artifacts {
 
 // Step 1: ./gradlew install
 // Step 2: ./gradlew bintrayUpload
+
+// ./gradlew :android-jsBridgeAll:install
+// ./gradlew :android-jsBridgeAll:install
