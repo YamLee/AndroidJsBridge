@@ -2,7 +2,7 @@
 
 > This project is used to quickly develop projects that require Html to interact with Android natively, out of the box.
 
-[中文文档]()
+[中文文档](https://github.com/YamLee/AndroidJsBridge/blob/master/README_CN.md)
 
 ## Quick Start
 
